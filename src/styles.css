@@ -3,118 +3,21 @@
 * {
     margin: 0;
     padding: 0;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
+    /* -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box; */
     box-sizing: border-box;
   }
   
   body {
-    line-height: 18px;
-    
+    line-height: 18px; 
+    background-color: #aaa8e6;
   }
-  
-  .page-header{
-  height: 100vh;
-  }
-  .page-header-image {
-    background: url(assets/img/foto-encabezado.jpg) no-repeat center center fixed;
-    background-size: cover;
-    height: 90vh;
-    width: 100%;
-    overflow:hidden;
-  }
-  
-  
-  .page-header-image .container{
-  padding-top: 25%;
-  }
-  
-  .profile-page-prueba{
-    width: 100%;
-  
-  }
-  /*.content-left{
-  padding-top: 25%;
-  }*/
-  .profile-image {
-      width:150px;
-      height: 150px;
-      overflow: hidden;
-      border-radius: 50%;
-      border: 2px double grey;
-  }
-  .img-profile {
-    width: auto;
-    height: auto;
-  }
-  
-  .imagen-contacto {
-    background: url(assets/img/contacto-laptop.jpg) no-repeat center center;
-    background-size: cover;
-    height: 90vh;
-    width: 100%;
-  
-  
-  }
-  
+
   
   .cc-contact  {
     height: 90vh;
     width: 100%;
     }
-  
-  
-  
-  
-  
-  /* Gradient colors*/
-  /*.wrapper {
-    padding: 10px !important;
-    background: #000 !important;
-    height: 100vh;
-  }*/
-  
-  
-  .navbar {
-    padding: 5px;
-    margin-top: 0;
-    background-position: 0 0;
-    background-image: linear-gradient(to right, #673ab7, #9c27b0, #3f51b5, #cddc39, #cddc39);
-    background-size: 300%;
-    animation-duration: 10s;
-    animation-iteration-count: infinite;
-    animation-name: menugradientanimation;
-  }
-  
-  .nav-link {
-    color: #fff !important;
-  }
-  .nav-link:hover {
-    color: #ccc !important;
-    text-decoration: underline;
-  }
-  
-  @keyframes menugradientanimation {
-    0% {
-      background-position: 0 0;
-    }
-    25% {
-      background-position: 50% 0;
-    }
-    50% {
-      background-position: 90% 0;
-    }
-    60% {
-      background-position: 60%;
-    }
-    80% {
-      background-position: 40%;
-    }
-    100% {
-      background-position: 0 0;
-    }
-  }
-  
   
   /*CSS DE LA PAGINA PARA CORREGIR */
   h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
@@ -123,14 +26,9 @@
     font-family: 'Lora', serif !important;
     font-weight: 700;
     line-height: 1.2;
-    color: #383c40;
-  }
-  /*
-  .collapse {
-    justify-content: flex-evenly !important;
+    color: #4f4f4f;
   }
   
-  */
   h5, .h5 {
     font-size: 1.25rem;
   }

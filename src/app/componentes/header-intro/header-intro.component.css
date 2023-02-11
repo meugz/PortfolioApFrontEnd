@@ -1,0 +1,52 @@
+.page-header {
+    height: 90vh;
+}
+
+.page-header-image {
+    background: url(../../../assets/img/foto-encabezado.jpg) no-repeat center center fixed;
+    background-size: cover;
+    height: 90vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+
+.page-header-image .container {
+    padding-top: 22%;
+    height: fit-content;
+}
+
+.profile-page-prueba {
+    width: 100%;
+
+}
+
+/*.content-left{
+    padding-top: 25%;
+    }*/
+.profile-image {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 2px double rgb(89, 89, 89);
+}
+
+.img-profile {
+    width: auto;
+    height: auto; 
+
+} 
+
+.perfil{ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.perfil-texto{
+    color: azure;
+    text-align: center;
+}
+

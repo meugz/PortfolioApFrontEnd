@@ -1,0 +1,6 @@
+.imagen-contacto {
+    background: url(../../../assets/img/contacto-laptop.jpg) no-repeat center center;
+    background-size: cover;
+    height: 90vh;
+    width: 100%;
+}
