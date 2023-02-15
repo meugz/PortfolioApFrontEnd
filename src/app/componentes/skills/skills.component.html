@@ -1,83 +1,65 @@
 <div class="section" id="skill">
-    <div class="container">
-        <div class="row">
+    <div class="container py-2">
+        <div class="d-flex flex-row justify-content-between">
             <div class="col-lg-10 col-md-12">
-                <div class="h4 text-left mt-4 title">Skills</div>
-            </div>
-            <div class="col-lg-2 col-md-0 d-flex flex-row-reverse">
-                <a href="#" class="btn btn-primary m-2 "><i class="fas fa-plus"></i></a>
-            </div> 
-        </div>
-
-        <div class="card mt-4" style="width: 100%;">
-            <div class="card-body">
-                <h5 class="card-title">Idiomas</h5>
-                <ul class="lang-list">
-                    <div class="lang-item m-2">
-                        <h5 class="card-subtitle text-center">Inglés</h5>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
-                                aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
-                        </div>
-                    </div>
-                    <div class="lang-item m-2">
-                        <h5 class="card-subtitle text-center">Francés</h5>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
-                                aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
-                        </div>
-                    </div>
-                    <div class="lang-item m-2">
-                        <h5 class="card-subtitle text-center">Italiano</h5>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
-                                aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
-                        </div>
-                    </div>
-                </ul>
-                <div class="d-flex flex-row-reverse">
-                    <a href="#" class="btn btn-primary m-2"><i class="fas fa-edit"></i></a>
-                    <a href="#" class="btn btn-primary m-2"><i class="fas fa-trash-alt"></i></a>
-                </div> 
+                <div class="h4 text-left mt-4 title">Skills <a href="#" class="btn btn-outline-secondary m-2 "><i
+                            class="fas fa-plus"></i></a></div>
             </div>
         </div>
 
-        <div class="card mt-4" style="width: 100%;">
-            <div class="card-body">
-                <h5 class="card-title mb-4">Lenguajes de programación & Herramientas</h5>
-                <ul class="list-inline dev-icons">
-                    <li class="list-inline-item fa-2x"><i class="fab fa-html5"></i></li>
-                    <li class="list-inline-item fa-2x"><i class="fab fa-css3-alt"></i></li>
-                    <li class="list-inline-item fa-2x"><i class="fab fa-js-square"></i></li>
-                    <li class="list-inline-item fa-2x"><i class="fab fa-angular"></i></li>
-                    <li class="list-inline-item fa-2x"><i class="fab fa-node-js"></i></li>
-                    <li class="list-inline-item fa-2x"><i class="fab fa-npm"></i></li>
-                </ul>
-                <div class="d-flex flex-row-reverse">
-                    <a href="#" class="btn btn-primary m-2"><i class="fas fa-edit"></i></a>
-                    <a href="#" class="btn btn-primary m-2"><i class="fas fa-trash-alt"></i></a>
-                </div> 
-            </div>
-            
-
-        </div>
-        <div class="card mt-4" style="width: 100%;">
-            <div class="card-body">
-                <h5 class="card-title mb-4">Workflow</h5>
-                <ul class="fa-ul mb-0">
-                    <li>
-                        <span class="fa-li"><i class="fas fa-check"></i></span>
-                        Diseño responsivo
-                    </li>
-                    <li>
-                        <span class="fa-li"><i class="fas fa-check"></i></span>
-                        Metodologías agiles y scrum
-                    </li>
-                </ul>
-                <div class="d-flex flex-row-reverse">
-                    <a href="#" class="btn btn-primary m-2"><i class="fas fa-edit"></i></a>
-                    <a href="#" class="btn btn-primary m-2"><i class="fas fa-trash-alt"></i></a>
+        <div class="card mt-4 mb-4 flex-wrap" style="max-width: 100%;">
+            <div class="row g-0">
+                <div class="text-center col-md-4 d-flex flex-column mt-4 mb-4">
+                    <circle-progress [percent]="85" [radius]="100" [title]="'Nivel'" titleColor=""
+                        [titleFontSize]="'2em'" titleFontSize="'Lora'" [showUnits]="false" [showSubtitle]="false" [innerStrokeWidth]="5"
+                        [outerStrokeColor]="'#3598dc'" [innerStrokeColor]="'#f76e8a'" [animation]="true"
+                        [animationDuration]="500" [lazy]="true">
+                    </circle-progress>
+                    <h5 class="name-skill text-center">Inglés</h5>
+                    <p class="text-center m-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti aliquid harum iusto dignissimos assumenda illum natus recusandae aut provident, culpa laborum tempore veniam at. Mollitia eveniet eaque ipsum illum fugiat.</p>
                 </div>
+                <!-- prueba -->
+                <div class="text-center col-md-4 d-flex flex-column mt-4 mb-4">
+                    <circle-progress [percent]="85" [radius]="100" [title]="'Nivel'" titleColor=""
+                        [titleFontSize]="'2em'" titleFontSize="'Lora'" [showUnits]="false" [showSubtitle]="false" [innerStrokeWidth]="5"
+                        [outerStrokeColor]="'#3598dc'" [innerStrokeColor]="'#f76e8a'" [animation]="true"
+                        [animationDuration]="500">
+                    </circle-progress>
+                    <h5 class="name-skill text-center">Inglés</h5>
+                    <p class="text-center m-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti aliquid harum iusto dignissimos assumenda illum natus recusandae aut provident, culpa laborum tempore veniam at. Mollitia eveniet eaque ipsum illum fugiat.</p>
+                </div>
+                <div class="text-center col-md-4 d-flex flex-column mt-4 mb-4">
+                    <circle-progress [percent]="85" [radius]="100" [title]="'Nivel'" titleColor=""
+                        [titleFontSize]="'2em'" titleFontSize="'Lora'" [showUnits]="false" [showSubtitle]="false" [innerStrokeWidth]="5"
+                        [outerStrokeColor]="'#3598dc'" [innerStrokeColor]="'#f76e8a'" [animation]="true"
+                        [animationDuration]="500">
+                    </circle-progress>
+                    <h5 class="name-skill text-center">Inglés</h5>
+                    <p class="text-center m-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti aliquid harum iusto dignissimos assumenda illum natus recusandae aut provident, culpa laborum tempore veniam at. Mollitia eveniet eaque ipsum illum fugiat.</p>
+                </div>
+                <div class="text-center col-md-4 d-flex flex-column mt-4 mb-4">
+                    <circle-progress [percent]="85" [radius]="100" [title]="'Nivel'" titleColor=""
+                        [titleFontSize]="'2em'" titleFontSize="'Lora'" [showUnits]="false" [showSubtitle]="false" [innerStrokeWidth]="5"
+                        [outerStrokeColor]="'#3598dc'" [innerStrokeColor]="'#f76e8a'" [animation]="true"
+                        [animationDuration]="500">
+                    </circle-progress>
+                    <h5 class="name-skill text-center">Inglés</h5>
+                    <p class="text-center m-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti aliquid harum iusto dignissimos assumenda illum natus recusandae aut provident, culpa laborum tempore veniam at. Mollitia eveniet eaque ipsum illum fugiat.</p>
+                </div>
+                <div class="text-center col-md-4 d-flex flex-column mt-4 mb-4">
+                    <circle-progress [percent]="85" [radius]="100" [title]="'Nivel'" titleColor=""
+                        [titleFontSize]="'2em'" titleFontSize="'Lora'" [showUnits]="false" [showSubtitle]="false" [innerStrokeWidth]="5"
+                        [outerStrokeColor]="'#3598dc'" [innerStrokeColor]="'#f76e8a'" [animation]="true"
+                        [animationDuration]="500">
+                    </circle-progress>
+                    <h5 class="name-skill text-center">Inglés</h5>
+                    <p class="text-center m-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti aliquid harum iusto dignissimos assumenda illum natus recusandae aut provident, culpa laborum tempore veniam at. Mollitia eveniet eaque ipsum illum fugiat.</p>
+                </div>
+                 <!-- fin prueba -->
+                 <div class="d-flex flex-row-reverse">
+                        <a href="#" class="btn btn-outline-secondary m-2"><i class="fas fa-edit"></i></a>
+                        <a href="#" class="btn btn-outline-secondary m-2"><i class="fas fa-trash-alt"></i></a>
+                    </div> 
             </div>
         </div>
     </div>

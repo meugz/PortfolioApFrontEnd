@@ -15,6 +15,7 @@ import { ContactComponent } from './componentes/contact/contact.component';
 import { FooterComponent } from './componentes/footer/footer.component';
 import { ProjectsComponent } from './componentes/projects/projects.component';
 import { ButtonsComponent } from './componentes/buttons/buttons.component';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ButtonsComponent } from './componentes/buttons/buttons.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgCircleProgressModule.forRoot({})
   ],
   providers: [],
   bootstrap: [AppComponent]

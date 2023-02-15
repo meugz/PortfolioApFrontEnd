@@ -1,0 +1,14 @@
+.card{
+    background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+    /*background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);*/
+}
+
+
+.card-title{
+    text-align: center;
+}
+
+.info{
+    text-align:center;
+}
+

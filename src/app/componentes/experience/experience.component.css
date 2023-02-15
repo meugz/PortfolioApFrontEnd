@@ -1,0 +1,14 @@
+.card{
+    background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%); 
+}
+
+.exp-img{
+    align-self: center;
+}
+/* .exp-img{
+    background-image: url(../../../assets/img/contacto-laptop.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+} */
+
