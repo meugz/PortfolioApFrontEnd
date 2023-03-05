@@ -5,15 +5,15 @@
                 <div class="perfil flex-column">
                     <div class="profile-image mb-2">
                         <a href="#">
-                           <span class="d-flex"><img class="img-profile img-fluid mx-auto mb-2" 
-                                    src="../../../assets/img/foto-perfil.jpeg" alt="..." /></span>
+                           <span class="d-flex"><img *ngIf="persona" class="img-profile img-fluid mx-auto mb-2" 
+                                    [src]="persona.foto" alt="..." /></span>
                         </a>
                     </div>
                     <div class="">
-                        <div id="nombre">
-                            <h2 class="perfil-texto">Maria Eugenia Zilli</h2>
+                        <div>
+                            <h2 class="perfil-texto" id="nombre" *ngIf="persona"> {{persona.nombre}} {{persona.apellido}}</h2>
                         </div>
-                        <h5 class="categoria perfil-texto">Full Stack Developer</h5>
+                        <h5 class="categoria perfil-texto" id="ocupacion" *ngIf="persona"> {{persona.ocupacion}}</h5>
                     </div>
                 </div>
             </div>

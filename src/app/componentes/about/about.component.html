@@ -5,9 +5,7 @@
                 <h5 class="h4 seccion-title m-3 pt-1">Acerca de</h5>
                     <a href="#" class="btn btn-outline-secondary m-3 p-16px"><i class="fas fa-edit"></i></a>
             </div>
-            <p class="card-text m-3">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Velit ut dolor ratione
-                laboriosam pariatur, earum, deleniti ipsa laudantium impedit natus temporibus itaque eveniet tempora
-                expedita recusandae est ab ipsam adipisci!</p>
+            <p class="card-text m-3" id="descripcion" *ngIf="persona">{{persona.descripcion}}</p>
             <div class="row d-flex justify-content-center">
                 <div class="col-lg-8 col-md-12">
                     <div class="card-body d-flex justify-content-center">
@@ -18,13 +16,13 @@
                                     <div class="col-sm-6">
                                         <strong class="h6 text-left text-uppercase">Fecha de nacimiento:</strong>
                                     </div>
-                                    <div class="col-sm-6 text">11/03/1991</div>
+                                    <div class="col-sm-6 text" id="fechaNac" *ngIf="persona">{{persona.fechaNac}}</div>
                                 </div>
                                 <div class="row mt-4">
                                     <div class="col-sm-6">
                                         <strong class="h6 text-left text-uppercase ">Ciudad:</strong>
                                     </div>
-                                    <div class="col-sm-6">Rosario</div>
+                                    <div class="col-sm-6" id="Ciudad" *ngIf="persona">{{persona.ciudad}}</div>
                                 </div>
                             </div>
                         </div>

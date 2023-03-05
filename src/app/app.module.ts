@@ -16,6 +16,8 @@ import { FooterComponent } from './componentes/footer/footer.component';
 import { ProjectsComponent } from './componentes/projects/projects.component';
 import { ButtonsComponent } from './componentes/buttons/buttons.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgCircleProgressModule.forRoot({})
+    NgCircleProgressModule.forRoot({}),
+    HttpClientModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

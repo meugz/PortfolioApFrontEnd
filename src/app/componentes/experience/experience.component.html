@@ -7,23 +7,23 @@
                 </div>
             </div>
         </div>
-        <div class="card mt-4 mb-4" style="max-width: 100%;">
-            <div class="row g-0">
-                <div class="exp-img col-md-2">
-                    <img src="../../../assets/img/escudo-santaFe.png" class="img-thumbnail img-fluid rounded-start m-2" width=350px height=350px alt="..."> 
+                <div class="card mt-4 mb-4" style="max-width: 100%;" *ngFor="let experience of trabajos">
+                    <div class="row g-0">
+                        <div class="exp-img col-md-2">
+                            <img src="../../../assets/img/escudo-santaFe.png" class="img-thumbnail img-fluid rounded-start m-2" width=350px height=350px alt="..."> 
+                        </div>
+                            <div class="col-md-10">
+                                <h4 class="card-title m-3"> {{experience.empresa}}</h4>
+                                <h5 class="card-subtitle m-3"> {{experience.nombrePuesto}} {{experience.fecha}}</h5>
+                                <p class="card-text m-3"> {{experience.descripcionExp}}</p>
+                                <p class="card-text"><small class="text-muted m-3">{{experience.ubicacion}}</small></p>
+                                <div class="d-flex flex-row-reverse">
+                                    <a href="#" class="btn btn-outline-secondary m-2"><i class="fas fa-edit"></i></a>
+                                    <a href="#" class="btn btn-outline-secondary m-2"><i class="fas fa-trash-alt"></i></a>
+                                </div> 
+                            </div>
+                    </div>
                 </div>
-                <div class="col-md-10">
-                    <h4 class="card-title m-3">Provincia de Santa Fe - Sede de Gobierno</h4>
-                    <h5 class="card-subtitle m-3">Centro Único de Atención (Febrero 2022 - presente)</h5>
-                    <p class="card-text m-3">This is a wider card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-muted m-3">Rosario, Argentina</small></p>
-                    <div class="d-flex flex-row-reverse">
-                        <a href="#" class="btn btn-outline-secondary m-2"><i class="fas fa-edit"></i></a>
-                        <a href="#" class="btn btn-outline-secondary m-2"><i class="fas fa-trash-alt"></i></a>
-                    </div> 
-                </div>
-            </div>
-        </div>
+       
     </div>
 </div>
