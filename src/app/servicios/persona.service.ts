@@ -16,5 +16,9 @@ export class PersonaService {
     return this.http.get<Persona>(this.URL+ 'ver/1');
   }
 
+  public getPersonaById(id:number): Observable<Persona>{
+    return this.http.get<Persona>(this.URL+'ver/'+id)
+  }
+
 
 }
