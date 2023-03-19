@@ -1,5 +1,3 @@
-import { Persona } from "./persona.model";
-
 export class Experiencia{
    id?:number;
    nombrePuesto: String;

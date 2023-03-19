@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { SkillType } from '../model/skill-type';
 import { Skill } from '../model/skill.model';
 
 @Injectable({
@@ -9,30 +10,32 @@ import { Skill } from '../model/skill.model';
 export class SkillService {
   URL = 'http://localhost:8080/api/skill/';
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  //obtener un skill -- resolver tema del id
-  public getSkill(id:number): Observable<Skill>{
-    return this.http.get<Skill>(this.URL+'ver/'+id);
+  //obtener un skill 
+  public getSkill(id: number): Observable<Skill> {
+    return this.http.get<Skill>(this.URL + id);
   }
-  
+
   //obtener lista de skills
-  public getListaSkill(): Observable<Skill[]>{
-    return this.http.get<Skill[]>(this.URL+'lista');
+  public getListaSkill(): Observable<Skill[]> {
+    return this.http.get<Skill[]>(this.URL + 'all');
   }
-  
+
   //crear Skill
-  public crearSkill(project:Skill): Observable<Skill>{
-    return this.http.post<Skill>(this.URL+'add', project);
+  public crearSkill(skill: Skill): Observable<Skill> {
+    return this.http.post<Skill>(this.URL + 'add', skill);
   }
 
   //editar Skill
-  public editarSkill(project:Skill): Observable<Skill>{
-    return this.http.put<Skill>(this.URL+'editar', project);
+  public editarSkill(id: number, skill: Skill): Observable<Skill> {
+    return this.http.put<Skill>(this.URL + id, skill);
   }
 
   //borrar Skill 
-  public borrarSkill(id:number): Observable<Skill>{
-    return this.http.delete<Skill>(this.URL+'delete/'+id);
+  public borrarSkill(id: number): Observable<Skill> {
+    return this.http.delete<Skill>(this.URL + id);
   }
+
 }
+

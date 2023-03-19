@@ -4,19 +4,70 @@
             <div class="container">
                 <div class="perfil flex-column">
                     <div class="profile-image mb-2">
-                        <a href="#">
-                           <span class="d-flex"><img *ngIf="persona" class="img-profile img-fluid mx-auto mb-2" 
-                                    [src]="persona.foto" alt="..." /></span>
+                        <a>
+                            <span class="d-flex"><img *ngIf="persona" class="img-profile img-fluid mx-auto mb-2"
+                                    [src]="persona.foto" alt="..." /> <i class="fa-solid fa-user"></i></span>
                         </a>
                     </div>
-                    <div class="">
+                    <div >
                         <div>
-                            <h2 class="perfil-texto" id="nombre" *ngIf="persona"> {{persona.nombre}} {{persona.apellido}}</h2>
+                            <h2 class="perfil-texto" id="nombre-apellido" *ngIf="persona"> {{persona.nombre + ' ' + persona.apellido}} </h2>
                         </div>
                         <h5 class="categoria perfil-texto" id="ocupacion" *ngIf="persona"> {{persona.ocupacion}}</h5>
                     </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <a class="btn btn-outline-light m-3 p-16px" (click)="open(persona.id)"><i class="fas fa-edit"></i></a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="perfilModal" tabindex="-1" role="dialog" aria-labelledby="perfilModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg"  role="document">
+    <div class="modal-content modal-dialog-scrollable">
+      <form (ngSubmit)="editarPerfil()" novalidate [formGroup]="eForm">
+        <div class="form-container">
+          <h4>Editar Perfil</h4>
+          <h5><strong>Ingresa los datos</strong></h5>
+
+          <!-- input nombre -->
+          <div class="grupo">
+            <input type="text" formControlName="nombre" id="nombre"  required >  <span
+              class="barra"></span>
+            <label>Nombre</label>
+            <span *ngIf="invalid('nombre')" class="text-danger">El nombre es requerido.</span>
+          </div>
+          <!-- input apellido -->
+          <div class="grupo">
+            <input type="text" formControlName="apellido" id="apellido"  required >  <span
+              class="barra"></span>
+            <label>Apellido</label>
+            <span *ngIf="invalid('apellido')" class="text-danger">El apellido es requerido.</span>
+          </div>
+        
+           <!-- input ocupacion -->
+           <div class="grupo">
+            <input type="text" formControlName="ocupacion" id="ocupacion"  required >  <span
+              class="barra"></span>
+            <label>Ocupación</label>
+            <span *ngIf="invalid('ocupacion')" class="text-danger">La ocupación es requerida.</span>
+          </div>
+          <!-- input url foto -->
+          <div class="grupo">
+            <input type="text" formControlName="foto" id="foto"  required >  <span
+              class="barra"></span>
+            <label>Foto</label>
+            <span *ngIf="invalid('foto')" class="text-danger">La foto de perfil es requerida.</span>
+          </div>
+        </div>
+      </form>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="close()">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="editarPerfil()" >Guardar</button>
+      </div>
+    </div>
+  </div>
+</div> 

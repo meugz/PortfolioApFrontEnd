@@ -1,20 +1,24 @@
-.card{
-    background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);  
-}
-
 h4, h5 {
     text-align: center;
     margin: 10px 0;
     font-weight: 600;
 }
 
+.card{
+    margin: 40px;
+
+}
+
+.card-body{
+    background-image: linear-gradient(120deg, #fccb90 0%, #d57eeb 100%); 
+    
+}
 
 .form-container{
     width: 70%;
 }
 
 form{
- 
     width: 100%;
     padding: 16px 0;
     display: flex;
@@ -52,15 +56,13 @@ input:focus, textarea:focus{
 input:focus~label, 
 input:valid~label, 
 textarea:focus~label, 
-textarea:valid~label {
-    
+textarea:valid~label{
     position: absolute;
     top: -14px;
     font-size: 12px;
     color: #00b9d8;
 }
 
- 
 label{
     color: var(--colorTextos);
     font-size: 16px;
@@ -91,3 +93,74 @@ input:focus~.barra::before, textarea:focus~.barra::before{
     transition: 0.3s ease all;
     left: 0%;
 }
+
+/*
+button{
+    background: #FC466B;  
+    background: -webkit-linear-gradient(to right, #3F5EFB, #FC466B);  
+    background: linear-gradient(to right, #3F5EFB, #FC466B); 
+    display: block;
+    width: 100px;
+    height: 40px;
+    border: none;
+    color: azure;
+    border-radius: 4px;
+    font-size: 16px;
+    margin: 15px;
+    margin: auto;
+    cursor: pointer;
+} */
+
+@media screen and (max-width:1100px){
+    form{
+        width: 100%;
+    }
+    .modal-dialog{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:600px){
+    form{
+        width: 100%;
+    }
+    .modal-dialog{
+        width: 90%;
+    }
+    
+}
+@media screen and (max-width:576px){
+    form{
+        width: 100%;
+    }
+
+    .modal-dialog{
+        width: 90%;
+        margin: 2rem !important;
+    }
+    .table-responsive{
+        width: 60% ;
+    }
+}
+
+@media screen and (max-width:450px){
+    form{
+        width: 100%;
+    }
+    .modal-dialog{
+        width: 90%;
+        margin: 2rem !important;
+    }
+}
+
+@media screen and (max-width:300px){
+    form{
+        width: 100%;
+    }
+    .modal-dialog{
+        width: 90%;
+        margin: 2rem !important;
+    }   
+}
+
+

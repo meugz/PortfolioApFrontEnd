@@ -17,6 +17,11 @@ import { ProjectsComponent } from './componentes/projects/projects.component';
 import { ButtonsComponent } from './componentes/buttons/buttons.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { EditSkillsComponent } from './componentes/edit-skills/edit-skills.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HomeComponent } from './componentes/home/home.component';
+import { InteresEditComponent } from './componentes/interes-edit.component';
+import { CursosComponent } from './componentes/cursos.component';
 
 
 @NgModule({
@@ -33,13 +38,18 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     ContactComponent,
     FooterComponent,
     ProjectsComponent,
-    ButtonsComponent
+    ButtonsComponent,
+    EditSkillsComponent,
+    HomeComponent,
+    InteresEditComponent,
+    CursosComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgCircleProgressModule.forRoot({}),
-    HttpClientModule 
+    HttpClientModule,
+    ReactiveFormsModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

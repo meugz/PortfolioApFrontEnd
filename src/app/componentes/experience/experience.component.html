@@ -1,29 +1,100 @@
 <div class="section" id="experience">
-    <div class="container py-2">
-        <div class="d-flex flex-row justify-content-between">
-            <div class="col-lg-10 col-md-12">
-                <div class="h4 text-left mt-4 title">Experiencia Laboral
-                    <a href="#" class="btn btn-outline-secondary m-2 "><i class="fas fa-plus"></i></a>
-                </div>
-            </div>
-        </div>
-                <div class="card mt-4 mb-4" style="max-width: 100%;" *ngFor="let experience of trabajos">
-                    <div class="row g-0">
-                        <div class="exp-img col-md-2">
-                            <img src="../../../assets/img/escudo-santaFe.png" class="img-thumbnail img-fluid rounded-start m-2" width=350px height=350px alt="..."> 
-                        </div>
-                            <div class="col-md-10">
-                                <h4 class="card-title m-3"> {{experience.empresa}}</h4>
-                                <h5 class="card-subtitle m-3"> {{experience.nombrePuesto}} {{experience.fecha}}</h5>
-                                <p class="card-text m-3"> {{experience.descripcionExp}}</p>
-                                <p class="card-text"><small class="text-muted m-3">{{experience.ubicacion}}</small></p>
-                                <div class="d-flex flex-row-reverse">
-                                    <a href="#" class="btn btn-outline-secondary m-2"><i class="fas fa-edit"></i></a>
-                                    <a href="#" class="btn btn-outline-secondary m-2"><i class="fas fa-trash-alt"></i></a>
-                                </div> 
-                            </div>
-                    </div>
-                </div>
-       
+  <div class="container py-2">
+    <!-- Botón de redirección a inicio según vista -->
+    <div class="d-flex justify-content-end"><a class="btn btn-outline-secondary m-1" (click)="redirectToHome()"
+        *ngIf="enExperiencias">
+        <h6 class="align-self-center">Regresar a inicio <i class="fas fa-home m-1"></i></h6>
+      </a>
     </div>
+    <!-- Título de encabezado y botones de ver y agregar filtrados según vista -->
+    <div class="d-flex flex-row justify-content-start">
+      <div class="col-lg-10 col-md-12 m-0">
+        <div class="h4 text-left mt-4 title">Experiencia Laboral
+          <a class="btn btn-outline-secondary m-2" (click)="redirectTo()" *ngIf="!enExperiencias"><i
+              class="fas fa-eye"></i></a>
+          <a class="btn btn-outline-secondary m-2" (click)="openCreate()" *ngIf="enExperiencias"><i
+              class="fas fa-plus"></i></a>
+        </div>
+      </div>
+    </div>
+    <!-- Cards para mostrar listados de experiencias laborales -->
+    <div class="card mt-4 mb-4" style="max-width: 100%;" *ngFor="let experience of trabajos">
+      <div class="row g-0">
+        <div class="exp-img col-md-2">
+          <img src="../../../assets/img/escudo-santaFe.png" class="img-thumbnail img-fluid rounded-start m-2"
+            width=350px height=350px alt="...">
+        </div>
+        <!-- Datos tradidos desde BD -->
+        <div class="col-md-10">
+          <h4 class="card-title m-3"> {{experience.empresa}}</h4>
+          <h5 class="card-subtitle m-3"> {{experience.nombrePuesto}}</h5>
+          <h5 class="card-subtitle m-3 fecha-inicio"> Fecha inicio: {{experience.fecha}}</h5>
+          <p class="card-text m-3"> {{experience.descripcionExp}}</p>
+          <p class="card-text"><small class="text-muted m-3">{{experience.ubicacion}}</small></p>
+          <div class="d-flex flex-row-reverse">
+            <a class="btn btn-outline-secondary m-2" (click)="openEdit(experience.id)"><i class="fas fa-edit"></i></a>
+            <a class="btn btn-outline-secondary m-2" (click)="deleteExp(experience.id)"><i
+                class="fas fa-trash-alt"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal con formulario para creación y edición de experiencia laboral -->
+<div class="modal fade" id="expModal" tabindex="-1" role="dialog" aria-labelledby="expModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content modal-dialog-scrollable">
+      <!-- Formulario reactivo -->
+      <form (ngSubmit)="createExp()" novalidate [formGroup]="expform">
+        <div class="form-container">
+          <h4>Experiencia Laboral</h4>
+          <h5><strong>Ingrese los datos</strong></h5>
+
+          <!-- input NombrePuesto -->
+          <div class="grupo">
+            <input type="text" formControlName="nombrePuesto" id="nombrePuesto" required> <span class="barra"></span>
+            <label>Nombre del Puesto</label>
+            <span *ngIf="invalid('nombrePuesto')" class="text-danger">El nombre es requerido.</span>
+          </div>
+          <!-- input empresa -->
+          <div class="grupo">
+            <input type="text" formControlName="empresa" id="empresa" required> <span class="barra"></span>
+            <label>Nombre de la empresa/institución</label>
+            <span *ngIf="invalid('empresa')" class="text-danger">La empresa o institución es requerida.</span>
+          </div>
+          <!-- input ubicacion -->
+          <div class="grupo">
+            <input type="text" formControlName="ubicacion" id="ubicacion" required> <span class="barra"></span>
+            <label>Ubicación</label>
+            <span *ngIf="invalid('ubicacion')" class="text-danger">La ubicación es requerida.</span>
+          </div>
+          <!--input fecha -->
+          <div class="grupo">
+            <input type="text" formControlName="fecha" id="fecha" required #dateInput> <span class="barra"></span>
+            <label>Fecha inicio</label>
+            <span *ngIf="invalid('fecha')" class="text-danger">La fecha es requerida.</span>
+          </div>
+
+          <!-- input descripcionExp-->
+          <div class="grupo">
+            <textarea formControlName="descripcionExp" id="descripcionExp" required></textarea> <span
+              class="barra"></span>
+            <label>Descripción</label>
+            <span *ngIf="invalidError('descripcionExp', 'required')" class="text-danger">La descripcion es
+              requerida</span>
+            <span *ngIf="invalidError('descripcionExp', 'maxlength')" class="text-danger">La descripcion debe ser menor
+              a 175 caracteres.</span>
+          </div>
+        </div>
+      </form>
+      <!-- Fin formulario - botones para editar y guardar filtrados según vista -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="close()">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="createExp()" *ngIf="!buttonEdit">Guardar</button>
+        <button type="button" class="btn btn-primary" (click)="editExpe()" *ngIf="buttonEdit">Editar</button>
+      </div>
+    </div>
+  </div>
 </div>

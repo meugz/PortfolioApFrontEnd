@@ -1,5 +1,5 @@
 .card{
-    background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);  
+    background-image: linear-gradient(120deg, #fccb90 0%, #d57eeb 100%); 
 }
 
 h4, h5 {
@@ -8,13 +8,19 @@ h4, h5 {
     font-weight: 600;
 }
 
+.card-body{ 
+    padding: 10px;
+}
+
+li{
+    font-size: large;
+}
 
 .form-container{
     width: 70%;
 }
 
 form{
- 
     width: 100%;
     padding: 16px 0;
     display: flex;
@@ -60,7 +66,6 @@ textarea:valid~label {
     color: #00b9d8;
 }
 
- 
 label{
     color: var(--colorTextos);
     font-size: 16px;

@@ -9,30 +9,30 @@ import { Proyecto } from '../model/proyecto.model';
 export class ProyectoService {
   URL = 'http://localhost:8080/api/proyecto/';
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   //obtener un proyecto -- resolver tema del id
-  public getProyecto(id:number): Observable<Proyecto>{
-    return this.http.get<Proyecto>(this.URL+'ver/'+id);
+  public getProyecto(id: number): Observable<Proyecto> {
+    return this.http.get<Proyecto>(this.URL + id);
   }
 
   //obtener lista de proyectos
-  public getListaProyecto(): Observable<Proyecto[]>{
-    return this.http.get<Proyecto[]>(this.URL+'lista');
+  public getListaProyecto(): Observable<Proyecto[]> {
+    return this.http.get<Proyecto[]>(this.URL + 'all');
   }
 
   //crear proyecto
-  public crearProyecto(project:Proyecto): Observable<Proyecto>{
-    return this.http.post<Proyecto>(this.URL+'add', project);
+  public crearProyecto(project: Proyecto): Observable<Proyecto> {
+    return this.http.post<Proyecto>(this.URL + 'add', project);
   }
 
   //editar proyecto
-  public editarProyecto(project:Proyecto): Observable<Proyecto>{
-    return this.http.put<Proyecto>(this.URL+'editar', project);
+  public editarProyecto(id: number, project: Proyecto): Observable<Proyecto> {
+    return this.http.put<Proyecto>(this.URL + id, project);
   }
 
   //borrar proyecto 
-  public borrarProyecto(id:number): Observable<Proyecto>{
-    return this.http.delete<Proyecto>(this.URL+'delete/'+id);
+  public borrarProyecto(id: number): Observable<Proyecto> {
+    return this.http.delete<Proyecto>(this.URL + id);
   }
 }

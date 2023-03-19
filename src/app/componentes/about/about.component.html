@@ -1,34 +1,81 @@
 <div class="section" id="about">
-    <div class="container">
-        <div class="card" style="width: 100%">
-            <div class="d-flex flex-row justify-content-between">
-                <h5 class="h4 seccion-title m-3 pt-1">Acerca de</h5>
-                    <a href="#" class="btn btn-outline-secondary m-3 p-16px"><i class="fas fa-edit"></i></a>
-            </div>
-            <p class="card-text m-3" id="descripcion" *ngIf="persona">{{persona.descripcion}}</p>
-            <div class="row d-flex justify-content-center">
-                <div class="col-lg-8 col-md-12">
-                    <div class="card-body d-flex justify-content-center">
-                        <div class="col-lg-8 col-md-12">
-                            <div class="h5 card-title mt-4 mb-4">Datos personales</div>
-                            <div class="info">
-                                <div class="row mt-4">
-                                    <div class="col-sm-6">
-                                        <strong class="h6 text-left text-uppercase">Fecha de nacimiento:</strong>
-                                    </div>
-                                    <div class="col-sm-6 text" id="fechaNac" *ngIf="persona">{{persona.fechaNac}}</div>
-                                </div>
-                                <div class="row mt-4">
-                                    <div class="col-sm-6">
-                                        <strong class="h6 text-left text-uppercase ">Ciudad:</strong>
-                                    </div>
-                                    <div class="col-sm-6" id="Ciudad" *ngIf="persona">{{persona.ciudad}}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+  <div class="container">
+    <div class="card" style="width: 100%">
+      <div class="d-flex flex-row justify-content-between">
+        <h5 class="h4 seccion-title m-3 pt-1">Acerca de</h5>
+        <a class="btn btn-outline-secondary m-3 p-16px" (click)="open(persona.id)"><i class="fas fa-edit"></i></a>
+      </div>
+      <p class="card-text m-3" id="descripcion" *ngIf="persona">{{persona.descripcion}}</p>
+      <div class="row d-flex justify-content-center">
+        <div class="col-lg-8 col-md-12">
+          <div class="card-body d-flex justify-content-center">
+            <div class="col-lg-8 col-md-12">
+              <div class="h5 card-title mt-4 mb-4">Datos personales</div>
+              <div class="info">
+                <div class="row mt-4">
+                  <div class="col-sm-6">
+                    <strong class="h6 text-left text-uppercase">Fecha de nacimiento:</strong>
+                  </div>
+                  <div class="col-sm-6 text" id="fechaNac" *ngIf="persona">{{persona.fechaNac}}</div>
                 </div>
+                <div class="row mt-4">
+                  <div class="col-sm-6">
+                    <strong class="h6 text-left text-uppercase ">Ciudad:</strong>
+                  </div>
+                  <div class="col-sm-6" id="ciudad" *ngIf="persona">{{persona.ciudad}}</div>
+                </div>
+                <div class="row mt-4">
+                  <div class="col-sm-6">
+                    <strong class="h6 text-left text-uppercase ">Email:</strong>
+                  </div>
+                  <div class="col-sm-6" id="email" *ngIf="persona">{{persona.email}}</div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
+</div>
+
+<div class="modal fade" id="personModal" tabindex="-1" role="dialog" aria-labelledby="personModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content modal-dialog-scrollable">
+      <form (ngSubmit)="editarPersona()" novalidate [formGroup]="eform">
+        <div class="form-container">
+          <h4>Editar Persona</h4>
+          <h5><strong>Ingresa los datos</strong></h5>
+          <div class="grupo">
+            <input type="text" formControlName="fechaNac" id="fechaNac" required #dateNacInput> <span
+              class="barra"></span>
+            <label>Fecha de Nacimiento</label>
+            <span *ngIf="invalid('fechaNac')" class="text-danger">La fecha es requerida.</span>
+          </div>
+          <div class="grupo">
+            <input type="text" formControlName="ciudad" id="ciudad" required> <span class="barra"></span>
+            <label>Ciudad</label>
+            <span *ngIf="invalid('ciudad')" class="text-danger">La ciudad es requerida.</span>
+          </div>
+          <div class="grupo">
+            <input type="email" formControlName="email" id="email" required> <span class="barra"></span>
+            <label>Email</label>
+            <span *ngIf="invalid('email')" class="text-danger">El email es requerido.</span>
+          </div>
+          <div class="grupo">
+            <textarea formControlName="descripcion" id="descripcion" required></textarea> <span class="barra"></span>
+            <label>Descripción - Acerca de</label>
+            <span *ngIf="invalidError('descripcion', 'required')" class="text-danger">La descripcion es requerida</span>
+            <span *ngIf="invalidError('descripcion', 'maxlength')" class="text-danger">La descripcion debe ser menor a
+              200 caracteres.</span>
+          </div>
+        </div>
+      </form>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="close()">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="editarPersona()">Guardar</button>
+      </div>
+    </div>
+  </div>
 </div>

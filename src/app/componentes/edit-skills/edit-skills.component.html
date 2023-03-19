@@ -1,0 +1,107 @@
+<div class="section" id="skill-table">
+  <div class="container py-2">
+    <!-- Botón de redirección a componente con lista de skills  -->
+    <div class="d-flex justify-content-end"> <a class="btn mt-4 btn-outline-secondary m-5 mb-1" (click)="redirectTo()"
+        *ngIf="enSkillsTabla">
+        <h6 class="align-self-center">Regresar a Skills <i class="fas fa-lightbulb m-1"></i></h6>
+      </a>
+    </div>
+    <!-- Título componente de edición - borrado de skills -->
+    <div class="d-flex flex-row justify-content-start">
+      <div class="col-lg-10 col-md-12">
+        <div class="h4 text-left title m-2">Lista de Skills</div>
+      </div>
+    </div>
+    <div class="card mt-4 mb-4 flex-wrap" style="max-width: 100%;">
+      <div class="card-body">
+        <!-- Encabezados tabla edicion-borrar -->
+        <table class="table table-striped table-hover container mt-4">
+          <thead>
+            <tr>
+              <th scope="col">Nombre Habilidad</th>
+              <th scope="col">Nivel</th>
+              <th scope="col">Tipo</th>
+              <th scope="col">Descripción</th>
+              <th scope="col">Borrar</th>
+              <th scope="col">Editar </th>
+            </tr>
+          </thead>
+          <!-- Cuerpo de tabla con los datos traidos desde BD -->
+          <tbody>
+            <tr *ngFor="let skill of skills">
+              <td>{{skill.nombreSkill}}</td>
+              <td>{{skill.nivel}}</td>
+              <td>{{skill.tipo}}</td>
+              <td>{{skill.descripcionSkill}}</td>
+              <td><a class="btn btn-outline-secondary m-2" (click)="deleteSkill(skill.id)"><i
+                    class="fas fa-trash-alt"></i></a></td>
+              <td><a class="btn btn-outline-secondary m-2" (click)="open(skill.id)"><i class="fas fa-edit"></i></a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Código modal para formulario -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content modal-dialog-scrollable">
+
+      <!-- Formulario reactivo -->
+      <form (ngSubmit)="editarSkill()" novalidate [formGroup]="eform">
+        <div class="form-container">
+          <h4>Edición Habilidades</h4>
+          <h5><strong>Ingresa los datos</strong></h5>
+          <!-- input nombre -->
+          <div class="grupo">
+            <input type="text" formControlName="nombreSkill" id="nombreSkill" required> <span class="barra"></span>
+            <label>Nombre de habilidad</label>
+            <span *ngIf="invalid('nombreSkill')" class="text-danger">El nombre es requerido.</span>
+          </div>
+          <!-- select tipo -->
+          <div class="grupo">
+            <select formControlName="tipo" id="tipo" (change)="onTipo($event)">
+              <option value="" disabled selected>Seleccione el tipo</option>
+              <option *ngFor="let type of skillTypes">{{type.text}}</option>
+            </select>
+            <span *ngIf="invalid('tipo')" class="text-danger"> El tipo es requerido</span>
+          </div>
+          <!-- select nivel idiomas  -->
+          <div class="grupo">
+            <select formControlName="nivel" id="nivel" *ngIf="tipoSkill == 'IDIOMAS'">
+              <option disabled selected="">Seleccione el nivel</option>
+              <option *ngFor="let nivel of idiomaLevels">{{nivel.text}}</option>
+            </select>
+            <label></label>
+          </div>
+          <!-- select nivel syh -->
+          <div class="grupo">
+            <select formControlName="nivel" id="nivel" *ngIf="tipoSkill == 'SOFT_SKILL' || tipoSkill == 'HARD_SKILL'">
+              <option disabled selected="">Seleccione el nivel</option>
+              <option *ngFor="let nivel of syhLevels">{{nivel.text}}</option>
+            </select>
+            <label></label>
+          </div>
+          <!-- input descripcion -->
+          <div class="grupo">
+            <textarea formControlName="descripcionSkill" id="descripcionSkill" required></textarea> <span
+              class="barra"></span>
+            <label>Descripción de habilidad</label>
+            <span *ngIf="invalidError('descripcionSkill', 'required')" class="text-danger">La descripcion es
+              requerida</span>
+            <span *ngIf="invalidError('descripcionSkill', 'maxlength')" class="text-danger">La descripcion debe ser
+              menor a 175 caracteres.</span>
+          </div>
+        </div>
+      </form>
+      <!-- Fin formulario - botones de cierre y guardado Modal  -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="close()">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="editarSkill()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contact',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
+  enContacto: boolean = false;
 
-  constructor() { }
+  constructor( private router: Router) { }
 
   ngOnInit(): void {
+    this.enContacto = this.router.url.includes('contacto');
   }
 
+  // redirectToHome(){
+  //   this.router.navigate(['']);
+  // }
 }

@@ -1,0 +1,57 @@
+<div class="section" id="interes-edit">
+  <div class="container">
+    <!-- Botón para redigir vista a componente de intereses filtrado según vista -->
+    <div class="d-flex justify-content-end"> <a class="btn mt-4 btn-outline-secondary mb-1" (click)="redirectTo()"
+        *ngIf="enInteresesTabla">
+        <h6 class="align-self-center">Regresar a intereses<i class="fas fa-heart m-1"></i></h6>
+      </a>
+    </div>
+    <!-- Título componente y listado de datos traidos desde BD -->
+    <div class="h4 text-right mt-4 mb-4 title">Lista de Intereses</div>
+    <div class="card mt-2 mb-2 content" *ngFor="let interest of intereses" style="width: 100%;">
+      <ol>
+        <div class="card-body">
+          <li>{{interest.descripcionInteres}} </li>
+          <!-- Botones para editar y borrar interés -->
+          <div class="d-flex flex-row-reverse">
+            <a class="btn btn-outline-secondary m-2" (click)="openEdit(interest.id)"><i class="fas fa-edit"></i></a>
+            <a class="btn btn-outline-secondary m-2" (click)="deleteInterest(interest.id)"><i
+                class="fas fa-trash-alt"></i></a>
+          </div>
+        </div>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- Modal con formulario para edición de intereses -->
+<div class="modal fade" id="intEditModal" tabindex="-1" role="dialog" aria-labelledby="intEditModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content modal-dialog-scrollable">
+      <!-- Formulario reactivo  -->
+      <form (ngSubmit)="editInterest()" novalidate [formGroup]="interestForm">
+        <div class="form-container">
+          <h4>Intereses</h4>
+          <h5><strong>Ingrese los datos</strong></h5>
+
+          <!-- input descripcionInteres-->
+          <div class="grupo">
+            <textarea formControlName="descripcionInteres" id="descripcionInteres" required></textarea> <span
+              class="barra"></span>
+            <label>Descripción</label>
+            <span *ngIf="invalidError('descripcionInteres', 'required')" class="text-danger">La descripcion es
+              requerida</span>
+            <span *ngIf="invalidError('descripcionInteres', 'maxlength')" class="text-danger">La descripcion debe ser
+              menor a 175 caracteres.</span>
+          </div>
+        </div>
+      </form>
+      <!-- Fin de formulario - botones de cierre y edición -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="close()">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="editInterest()">Editar</button>
+      </div>
+    </div>
+  </div>
+</div>
