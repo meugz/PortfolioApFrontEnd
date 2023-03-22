@@ -5,6 +5,8 @@ import { Persona } from 'src/app/model/persona.model';
 import { PersonaService } from 'src/app/servicios/persona.service';
 import { environment } from 'src/environments/environment';
 import * as bs from 'bootstrap/dist/js/bootstrap.bundle.js';
+import { UsuarioService } from 'src/app/servicios/usuario.service';
+import { TokenService } from 'src/app/servicios/token.service';
 
 @Component({
   selector: 'app-header-intro',
@@ -16,11 +18,12 @@ export class HeaderIntroComponent implements OnInit {
   personas: Persona[] = [];
   eForm: FormGroup;
   personaId: number;
-
-  constructor(public personaService: PersonaService, private formBuilder: FormBuilder, private router: Router) { }
+  
+  constructor(private personaService: PersonaService, private tokenService:TokenService, private usuarioService: UsuarioService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
-    this.buildForm(); 
+    this.buildForm();
+    this.isLogged(); 
     this.personaService.getPersona().subscribe(data => {
     this.persona = data;
     this.persona.foto = environment.imgBasePath+this.persona.foto;
@@ -100,6 +103,10 @@ export class HeaderIntroComponent implements OnInit {
         this.close();
       }
     });
+  }
+
+  isLogged(){
+    return this.usuarioService.isLogged();
   }
  
 

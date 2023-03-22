@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { Educacion } from 'src/app/model/educacion.model';
 import { EducacionService } from 'src/app/servicios/educacion.service';
 import * as bs from 'bootstrap/dist/js/bootstrap.bundle.js';
+import { UsuarioService } from 'src/app/servicios/usuario.service';
+import { TokenService } from 'src/app/servicios/token.service';
 
 @Component({
   selector: 'app-education',
@@ -18,10 +20,12 @@ export class EducationComponent implements OnInit {
   eduId: number;
   buttonEdit: boolean = false;
   enEducacion: boolean = false;
+  
 
-  constructor(private educacionService: EducacionService, private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private educacionService: EducacionService, private tokenService:TokenService, private usuarioService: UsuarioService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
+    this.isLogged();
     this.buildForm();
     this.educacionService.getListaEducacion().subscribe(edu => this.titulos = edu);
     this.enEducacion = this.router.url.includes('educacion');
@@ -35,7 +39,7 @@ export class EducationComponent implements OnInit {
       //ubicacion: ['', Validators.required],
       periodoEdu: ['', Validators.required],
       descripcionEdu: ['', Validators.compose([Validators.required, Validators.maxLength(175)])]
-    })
+    });
   }
 
   //validación de ingreso datos
@@ -156,5 +160,9 @@ export class EducationComponent implements OnInit {
       }
     });
   }
+  
+  isLogged(){
+     return this.usuarioService.isLogged();
+   }
 
 }

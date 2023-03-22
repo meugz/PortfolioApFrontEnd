@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { SkillType } from 'src/app/model/skill-type';
 import { SkillLevel } from 'src/app/model/skill-level';
 import { SyhLevel } from 'src/app/model/syh-level';
+import { UsuarioService } from 'src/app/servicios/usuario.service';
+import { TokenService } from 'src/app/servicios/token.service';
 
 @Component({
   selector: 'app-skills',
@@ -22,10 +24,11 @@ export class SkillsComponent implements OnInit {
   syhLevels: any[] = [];
   tipoSkill: any;
   enSkills: boolean = false;
-
-  constructor(public skillService: SkillService, private formBuilder: FormBuilder, private router: Router) { }
+  
+  constructor(public skillService: SkillService, private tokenService: TokenService, private usuarioService: UsuarioService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
+    this.isLogged();
     this.buildForm();
     this.cargarSelectTipo();
     this.cargarSelectNivel();
@@ -131,5 +134,11 @@ export class SkillsComponent implements OnInit {
     const myModal = bs.Modal.getInstance(myModalEl);
     myModal.hide(); // hide modal
   }
+
+  isLogged(){
+    return this.usuarioService.isLogged();
+  }
+  
+
 
 }

@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { Interes } from 'src/app/model/interes.model';
 import { InteresService } from 'src/app/servicios/interes.service';
 import * as bs from 'bootstrap/dist/js/bootstrap.bundle.js';
+import { UsuarioService } from 'src/app/servicios/usuario.service';
+import { TokenService } from 'src/app/servicios/token.service';
 
 @Component({
   selector: 'app-interest',
@@ -17,14 +19,16 @@ export class InterestComponent implements OnInit {
   buttonEdit: boolean;
   interesId: number;
   enIntereses: boolean = false;
+ 
 
-  constructor(private interesService: InteresService, private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private interesService: InteresService, private tokenService: TokenService, private usuarioService: UsuarioService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
+    this.isLogged();
     this.buildForm();
     this.interesService.getListaInteres().subscribe(interes => this.intereses = interes);
     this.enIntereses = this.router.url.includes('intereses');
-    
+
   }
 
   //armado formulario-validaciones
@@ -50,7 +54,7 @@ export class InterestComponent implements OnInit {
     this.router.navigate(['/intereses/tabla']);
   }
 
-  redirectToHome(){
+  redirectToHome() {
     this.router.navigate(['']);
   }
 
@@ -96,7 +100,9 @@ export class InterestComponent implements OnInit {
     }
   }
 
-  
+  isLogged(){
+    return this.usuarioService.isLogged();
+  }
 
 
 }

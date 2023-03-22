@@ -8,6 +8,10 @@
     animation-iteration-count: infinite;
     animation-name: menugradientanimation;
   }
+
+  .boton-logo, .nav-item {
+    cursor: pointer;
+  }
   
   .nav-link {
     color: #fff !important;

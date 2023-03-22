@@ -3,7 +3,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
             <div class="container-fluid">
-                <a class="" (click)="redirectToHome()"> <img src="../../../assets/img/APLogo.png" width="130px" alt="">
+                <a class="boton-logo" (click)="redirectToHome()"> <img src="../../../assets/img/APLogo.png" width="130px" alt="">
                 </a>
 
                 <!-- Botón navbar vista responsive -->
@@ -39,21 +39,12 @@
                         <li class="nav-item">
                             <a class="nav-link" (click)="redirectToContact()">Contacto</a>
                         </li>
-                        <!-- <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Proyectos
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#projects">Porfolio Argentina Programa</a></li>
-                            </ul>
-                        </li> -->
                     </ul>
+                  
                     <div class="nav-item-btn">
-                        <a class="btn btn-primary m-2" href="#registro">Registrarse</a>
-                    </div>
-                    <div class="nav-item-btn">
-                        <a class="btn btn-primary m-2" href="#login">Entrar</a>
+                        <!-- <a class="btn btn-primary m-2" (click)="redirectToHome()" *ngIf="enLogin && !isLogged()">Home</a> -->
+                        <a class="btn btn-primary m-2" (click)="redirectToLogin()" *ngIf="!isLogged()">Login</a>  
+                        <a class="btn btn-primary m-2" (click)="onLogOut()" *ngIf="isLogged()">Logout</a> 
                     </div>
                 </div>
             </div>

@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { Curso } from '../model/curso.model';
 import { CursoService } from '../servicios/curso.service';
 import * as bs from 'bootstrap/dist/js/bootstrap.bundle.js';
+import { UsuarioService } from '../servicios/usuario.service';
+import { TokenService } from '../servicios/token.service';
 
 @Component({
   selector: 'app-cursos',
@@ -18,10 +20,11 @@ export class CursosComponent implements OnInit {
   buttonEdit: boolean;
   cursoId: number;
   enCursos: boolean = false;
-
-  constructor(private cursoService: CursoService, private formBuilder: FormBuilder, private router: Router) { }
+  
+  constructor(private cursoService: CursoService, private tokenService:TokenService, private usuarioService: UsuarioService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
+    this.isLogged();
     this.buildForm();
     this.cursoService.getListaCurso().subscribe(cur => this.cursos = cur);
     this.enCursos = this.router.url.includes('cursos');
@@ -155,6 +158,10 @@ export class CursosComponent implements OnInit {
         alert("Error al eliminar el curso.");
       }
     });
+  }
+
+  isLogged(){
+    return this.usuarioService.isLogged();
   }
 
 }

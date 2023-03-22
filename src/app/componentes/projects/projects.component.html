@@ -7,9 +7,9 @@
         <div class="d-flex flex-row justify-content-between">
             <div class="col-lg-10 col-md-12">
                 <div class="h4 text-left mt-4 title">Proyectos 
-                  <a class="btn btn-outline-secondary m-2" (click)="redirectTo()" *ngIf="!enProyectos"><i
+                  <a class="btn btn-outline-secondary m-2" (click)="redirectTo()" *ngIf="!enProyectos && isLogged()"><i
                     class="fas fa-eye"></i></a>
-                    <a class="btn btn-outline-secondary m-2" (click)="openCreate()" *ngIf="enProyectos"><i class="fas fa-plus"></i></a>
+                    <a class="btn btn-outline-secondary m-2" (click)="openCreate()" *ngIf="enProyectos && isLogged()"><i class="fas fa-plus"></i></a>
                   </div>
             </div>
         </div>
@@ -24,8 +24,8 @@
                     <p class="card-text m-3" id="descripcion-proyecto"> {{proyecto.descripcionProyecto}} </p>
                     <a href="{{proyecto.url}}"><p class="card-text m-3"><small class="text-muted">Ver proyecto</small></p></a>
                     <div class="d-flex flex-row-reverse">
-                        <a class="btn btn-outline-secondary m-2" (click)="openEdit(proyecto.id)"><i class="fas fa-edit"></i></a>
-                        <a class="btn btn-outline-secondary m-2" (click)="deleteProject(proyecto.id)"><i class="fas fa-trash-alt"></i></a>
+                        <a class="btn btn-outline-secondary m-2" (click)="openEdit(proyecto.id)" *ngIf="isLogged()"><i class="fas fa-edit"></i></a>
+                        <a class="btn btn-outline-secondary m-2" (click)="deleteProject(proyecto.id)" *ngIf="isLogged()"><i class="fas fa-trash-alt"></i></a>
                     </div> 
                 </div>
             </div>

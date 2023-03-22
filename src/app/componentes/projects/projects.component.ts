@@ -5,6 +5,8 @@ import { Proyecto } from 'src/app/model/proyecto.model';
 import { ProyectoService } from 'src/app/servicios/proyecto.service';
 import * as bs from 'bootstrap/dist/js/bootstrap.bundle.js';
 import Inputmask from 'inputmask';
+import { UsuarioService } from 'src/app/servicios/usuario.service';
+import { TokenService } from 'src/app/servicios/token.service';
 
 @Component({
   selector: 'app-projects',
@@ -19,11 +21,13 @@ export class ProjectsComponent implements OnInit, AfterViewInit {
   buttonEdit: boolean;
   projectId: number;
   enProyectos: boolean = false;
+ 
 
 
-  constructor(private proyectoService: ProyectoService, private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private proyectoService: ProyectoService, private tokenService:TokenService, private usuarioService: UsuarioService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
+    this.isLogged();
     this.buildForm();
     this.proyectoService.getListaProyecto().subscribe(project => this.proyectos = project);
     this.enProyectos = this.router.url.includes('proyectos');
@@ -173,5 +177,10 @@ export class ProjectsComponent implements OnInit, AfterViewInit {
       }
     }).mask(this.myInputElementRef.nativeElement);
   }
+
+  isLogged(){
+    return this.usuarioService.isLogged();
+  }
+
 
 }

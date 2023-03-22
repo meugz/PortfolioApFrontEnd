@@ -7,9 +7,9 @@
         <div class="d-flex flex-row justify-content-between">
             <div class="col-lg-10 col-md-12">
                 <div class="h4 text-left mt-4 title">Skills 
-                  <a class="btn btn-outline-secondary m-2" (click)="redirectTo()" *ngIf="!enSkills"><i
+                  <a class="btn btn-outline-secondary m-2" (click)="redirectTo()" *ngIf="!enSkills && isLogged()"><i
                     class="fas fa-eye"></i></a>
-                    <a class="btn btn-outline-secondary m-2" (click)="openCreate()" *ngIf="enSkills"><i class="fas fa-plus"></i></a>
+                    <a class="btn btn-outline-secondary m-2" (click)="openCreate()" *ngIf="enSkills && isLogged()"><i class="fas fa-plus"></i></a>
                           </div>
             </div>
         </div>
@@ -28,8 +28,8 @@
                
                <!-- redirección a tabla edición -->
                  <div class="d-flex flex-row-reverse">
-                        <a class="btn btn-outline-secondary m-2" (click)="redirectToTable()"><i class="fas fa-edit"></i></a>
-                        <a class="btn btn-outline-secondary m-2" (click)="redirectToTable()"><i class="fas fa-trash-alt"></i></a>
+                        <a class="btn btn-outline-secondary m-2" (click)="redirectToTable()" *ngIf="isLogged()"><i class="fas fa-edit"></i></a>
+                        <a class="btn btn-outline-secondary m-2" (click)="redirectToTable()" *ngIf="isLogged()"><i class="fas fa-trash-alt"></i></a>
                 </div> 
             </div>
         </div>

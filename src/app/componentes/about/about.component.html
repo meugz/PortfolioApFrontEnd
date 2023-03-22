@@ -3,7 +3,7 @@
     <div class="card" style="width: 100%">
       <div class="d-flex flex-row justify-content-between">
         <h5 class="h4 seccion-title m-3 pt-1">Acerca de</h5>
-        <a class="btn btn-outline-secondary m-3 p-16px" (click)="open(persona.id)"><i class="fas fa-edit"></i></a>
+        <a class="btn btn-outline-secondary m-3 p-16px" (click)="open(persona.id)" *ngIf="isLogged()"><i class="fas fa-edit"></i></a>
       </div>
       <p class="card-text m-3" id="descripcion" *ngIf="persona">{{persona.descripcion}}</p>
       <div class="row d-flex justify-content-center">

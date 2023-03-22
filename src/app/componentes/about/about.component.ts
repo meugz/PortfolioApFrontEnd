@@ -5,6 +5,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Persona } from 'src/app/model/persona.model';
 import { PersonaService } from 'src/app/servicios/persona.service';
 import Inputmask from 'inputmask';
+import { UsuarioService } from 'src/app/servicios/usuario.service';
+import { TokenService } from 'src/app/servicios/token.service';
 
 @Component({
   selector: 'app-about',
@@ -17,10 +19,12 @@ export class AboutComponent implements OnInit, AfterViewInit {
   personas: Persona[] = [];
   eform: FormGroup;
   personaId: number;
+  
 
-  constructor(public personaService: PersonaService, private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private personaService: PersonaService, private tokenService: TokenService, private usuarioService: UsuarioService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
+    this.isLogged();
     this.buildForm();
     this.personaService.getPersona().subscribe(data => { this.persona = data })
   }
@@ -113,6 +117,11 @@ export class AboutComponent implements OnInit, AfterViewInit {
         console.log('Data', buffer, opts);
       }
     }).mask(this.myInputElementRef.nativeElement);
+  }
+
+  //corroborar si inicio sesion
+  isLogged(){
+    return this.usuarioService.isLogged();
   }
   
 }

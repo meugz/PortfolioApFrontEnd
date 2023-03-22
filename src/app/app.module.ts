@@ -14,14 +14,19 @@ import { InterestComponent } from './componentes/interest/interest.component';
 import { ContactComponent } from './componentes/contact/contact.component';
 import { FooterComponent } from './componentes/footer/footer.component';
 import { ProjectsComponent } from './componentes/projects/projects.component';
-import { ButtonsComponent } from './componentes/buttons/buttons.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { EditSkillsComponent } from './componentes/edit-skills/edit-skills.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './componentes/home/home.component';
 import { InteresEditComponent } from './componentes/interes-edit.component';
 import { CursosComponent } from './componentes/cursos.component';
+import { PerfilComponent } from './componentes/perfil/perfil.component';
+import { LoginComponent } from './componentes/auth/login.component';
+import { interceptorProvider } from './servicios/interceptor.service';
+import { CommonModule, Location } from '@angular/common';
+
+
 
 
 @NgModule({
@@ -38,20 +43,24 @@ import { CursosComponent } from './componentes/cursos.component';
     ContactComponent,
     FooterComponent,
     ProjectsComponent,
-    ButtonsComponent,
     EditSkillsComponent,
     HomeComponent,
     InteresEditComponent,
-    CursosComponent
+    CursosComponent,
+    PerfilComponent,
+    LoginComponent
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgCircleProgressModule.forRoot({}),
     HttpClientModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule,
+    FormsModule,
+    CommonModule 
   ],
-  providers: [],
+  providers: [interceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -6,6 +6,8 @@ import { ExperienciaService } from 'src/app/servicios/experiencia.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Inputmask from 'inputmask';
+import { UsuarioService } from 'src/app/servicios/usuario.service';
+import { TokenService } from 'src/app/servicios/token.service';
 
 @Component({
   selector: 'app-experience',
@@ -21,20 +23,22 @@ export class ExperienceComponent implements OnInit, AfterViewInit {
   expId: number;
   experiencia: Experiencia;
   buttonEdit: boolean = false;
-  enExperiencias: boolean =false;
+  enExperiencias: boolean = false;
+  
 
 
-  constructor(public experienciaService: ExperienciaService, private formBuilder: FormBuilder, private router: Router) { }
+  constructor(public experienciaService: ExperienciaService, private tokenService:TokenService, private usuarioService: UsuarioService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
+    this.isLogged();
     this.buildForm();
     this.experienciaService.getListaExperiencia().subscribe(exp => this.trabajos = exp);
-    this.enExperiencias = this.router.url.includes('experiencias');  
-}
+    this.enExperiencias = this.router.url.includes('experiencias');
+  }
 
   //armado formulario-validaciones
   buildForm() {
-      this.expform = this.formBuilder.group({
+    this.expform = this.formBuilder.group({
       nombrePuesto: ['', Validators.required],
       empresa: ['', Validators.required],
       ubicacion: ['', Validators.required],
@@ -53,12 +57,12 @@ export class ExperienceComponent implements OnInit, AfterViewInit {
 
   }
 
-  redirectTo(){
+  redirectTo() {
     this.router.navigate(['/experiencias']);
   }
 
   //redirección a componente Home
-  redirectToHome(){
+  redirectToHome() {
     this.router.navigate(['']);
   }
 
@@ -107,7 +111,7 @@ export class ExperienceComponent implements OnInit, AfterViewInit {
           if (attr != 'id') {
             this.expform.get(attr).setValue(experiencia[attr]);
           }
-        } 
+        }
       },
       error: (err) => {
         alert("No se pudo encontrar la experiencia laboral");
@@ -118,12 +122,12 @@ export class ExperienceComponent implements OnInit, AfterViewInit {
 
   //método de apertura modal para filtrar boton de guardar experiencia laboral
   openCreate() {
-    this.buttonEdit= false;
+    this.buttonEdit = false;
     this.open();
   }
 
   //apertura modal para editar y cambio de condición para filtrar botón de editar
-  openEdit(id:number) {
+  openEdit(id: number) {
     this.expId = id;
     this.buttonEdit = true;
     this.findExpe(id);
@@ -166,16 +170,21 @@ export class ExperienceComponent implements OnInit, AfterViewInit {
 
   //inputmask para fecha   
   ngAfterViewInit(): void {
-      Inputmask('datetime', {
+    Inputmask('datetime', {
       inputFormat: 'yyyy-mm-dd',
       placeholder: 'yyyy-mm-dd',
       alias: 'datetime',
       clearMaskOnLostFocus: false,
-      isComplete: function(buffer, opts) {
+      isComplete: function (buffer, opts) {
         console.log('Data', buffer, opts);
       }
     }).mask(this.myInputElementRef.nativeElement);
   }
+
+  isLogged(){
+    return this.usuarioService.isLogged();
+  }
+
 
 }
 
