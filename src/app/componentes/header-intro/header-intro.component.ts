@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import * as bs from 'bootstrap/dist/js/bootstrap.bundle.js';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { TokenService } from 'src/app/servicios/token.service';
+import { ImgPerfilService } from 'src/app/servicios/img-perfil.service';
 
 @Component({
   selector: 'app-header-intro',
@@ -18,8 +19,10 @@ export class HeaderIntroComponent implements OnInit {
   personas: Persona[] = [];
   eForm: FormGroup;
   personaId: number;
+  public previsualizacion: string;
+
   
-  constructor(private personaService: PersonaService, private tokenService:TokenService, private usuarioService: UsuarioService, private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private imgService: ImgPerfilService, private personaService: PersonaService, private tokenService:TokenService, private usuarioService: UsuarioService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
     this.buildForm();
@@ -105,9 +108,15 @@ export class HeaderIntroComponent implements OnInit {
     });
   }
 
+  //control login
   isLogged(){
     return this.usuarioService.isLogged();
   }
+
+
+
+  
+
  
 
 
