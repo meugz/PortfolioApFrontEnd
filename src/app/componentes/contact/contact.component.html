@@ -1,0 +1,25 @@
+<div class="section-contacto" id="contact">
+    <div class="imagen-contacto" >
+        <form  
+        action="https://formspree.io/f/xgeblnrk"
+        method="POST" >
+            <div class="form-container">
+                <h4 class="form-container">Contáctame</h4>
+                <h5><strong>Ingresa tus datos y mensaje </strong></h5>
+                <div class="grupo">
+                    <input type="text" name="name" #name  required> <span class="barra"></span>
+                    <label>Nombre</label>
+                </div>
+                <div class="grupo">
+                    <input type="email" name="email" #email required> <span class="barra"></span>
+                    <label>Email</label>
+                </div>
+                <div class="grupo">
+                    <textarea name="message" #message rows="3" required></textarea> <span class="barra"></span>
+                    <label>Mensaje</label>
+                </div>
+                <button type="submit" class="btn btn-outline-light" (click)="enviar()">Enviar</button>
+            </div>
+        </form>
+    </div>
+</div>

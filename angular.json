@@ -27,7 +27,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.css"
             ],
             "scripts": []
           },
@@ -36,7 +37,7 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
+                  "maximumWarning": "1mb",
                   "maximumError": "1mb"
                 },
                 {

@@ -1,0 +1,104 @@
+<div class="section" id="skill">
+  <div class="container py-2">
+    <div class="d-flex justify-content-between">
+      <!-- Título seccion -->
+      <div class="d-flex ">
+        <div >
+          <div class="h4 text-left mt-4 title">Skills
+            <a class="btn btn-outline-secondary m-2" (click)="redirectTo()" *ngIf="!enSkills && isLogged()"><i
+                class="fas fa-eye"></i></a>
+            <a class="btn btn-outline-secondary m-2" (click)="openCreate()" *ngIf="enSkills && isLogged()"><i
+                class="fas fa-plus"></i></a>
+          </div>
+        </div>
+      </div>
+      <!-- Boton inicio -->
+      <div class="d-flex"><a class="btn mt-4 btn-outline-secondary m-2" (click)="redirectToHome()" *ngIf="enSkills">
+          <h6 class="align-items-center m-2" style="font-family:'Lora', serif"> Regresar a inicio <i
+              class="fas fa-home m-1"></i></h6>
+        </a>
+      </div>
+    </div>
+
+
+
+    <div class="card mt-4 mb-4 flex-wrap" style="max-width: 100%;">
+      <div class="row g-0">
+        <div class="text-center col-md-4 d-flex flex-column mt-4 mb-4" *ngFor="let skill of skills">
+          <circle-progress [percent]="(skill.percentNivel)" [radius]="100" [title]="(skill.nivel)" [showTitle]="true"
+            titleColor="" [titleFontSize]="'2em'" titleFontSize="'Lora'" [showUnits]="false" [showSubtitle]="false"
+            [innerStrokeWidth]="5" [outerStrokeColor]="'#3598dc'" [innerStrokeColor]="'#f76e8a'" [animation]="true"
+            [animationDuration]="500" [lazy]="true">
+          </circle-progress>
+          <h5 class="name-skill text-center"> {{skill.nombreSkill}} </h5>
+          <p class="text-center m-2"> {{skill.descripcionSkill}} </p>
+        </div>
+
+        <!-- redirección a tabla edición -->
+        <div class="d-flex flex-row-reverse contenedor-boton">
+          <a class="btn btn-outline-secondary m-2" (click)="redirectToTable()" *ngIf="isLogged()"><i
+              class="fas fa-edit"></i></a>
+          <a class="btn btn-outline-secondary m-2" (click)="redirectToTable()" *ngIf="isLogged()"><i
+              class="fas fa-trash-alt"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para agregar y editar skills -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content modal-dialog-scrollable">
+      <form (ngSubmit)="createSkill()" novalidate [formGroup]="addform">
+        <div class="form-container">
+          <h4>Agregar Habilidad</h4>
+          <h5><strong>Ingresa los datos</strong></h5>
+          <div class="grupo">
+            <input type="text" formControlName="nombreSkill" id="nombreSkill" required> <span class="barra"></span>
+            <label>Nombre de habilidad</label>
+            <span *ngIf="invalid('nombreSkill')" class="text-danger">El nombre es requerido.</span>
+          </div>
+          <div class="grupo">
+            <select formControlName="tipo" id="tipo" (change)="onTipo($event)">
+              <option value="" disabled selected>Seleccione el tipo</option>
+              <option *ngFor="let type of skillTypes">{{type.text}}</option>
+            </select>
+            <span *ngIf="invalid('tipo')" class="text-danger"> El tipo es requerido</span>
+          </div>
+
+          <div class="grupo" *ngIf="tipoSkill == 'IDIOMAS'">
+            <select formControlName="nivel" id="nivel">
+              <option value="" disabled selected>Seleccione el nivel</option>
+              <option *ngFor="let nivel of idiomaLevels">{{nivel.text}}</option>
+            </select>
+            <span *ngIf="invalid('nivel')" class="text-danger"> El nivel es requerido</span>
+          </div>
+
+          <div class="grupo" *ngIf="tipoSkill == 'SOFT_SKILL' || tipoSkill == 'HARD_SKILL'">
+            <select formControlName="nivel" id="nivel">
+              <option value="" disabled selected>Seleccione el nivel</option>
+              <option *ngFor="let nivel of syhLevels">{{nivel.text}}</option>
+            </select>
+            <span *ngIf="invalid('nivel')" class="text-danger"> El nivel es requerido</span>
+          </div>
+
+          <div class="grupo">
+            <textarea formControlName="descripcionSkill" id="descripcionSkill" required></textarea> <span
+              class="barra"></span>
+            <label>Descripción de habilidad</label>
+            <span *ngIf="invalidError('descripcionSkill', 'required')" class="text-danger">La descripcion es
+              requerida</span>
+            <span *ngIf="invalidError('descripcionSkill', 'maxlength')" class="text-danger">La descripcion debe ser
+              menor a 175 caracteres.</span>
+          </div>
+        </div>
+      </form>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="close()">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="createSkill()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

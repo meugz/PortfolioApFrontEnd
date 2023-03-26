@@ -1,0 +1,64 @@
+<div class="section" id="interest">
+  <div class="container">
+    <div class="d-flex justify-content-between">
+      <!-- Título de encabezado y botones de ver y agregar filtrados según vista -->
+      <div class="h4 text-left mt-4 title">Información adicional
+        <a class="btn btn-outline-secondary m-2" (click)="redirectTo()" *ngIf="!enIntereses && isLogged()"><i
+            class="fas fa-eye"></i></a>
+        <a class="btn btn-outline-secondary m-2" (click)="openCreate()" *ngIf="enIntereses && isLogged()"><i
+            class="fas fa-plus"></i></a>
+      </div>
+       <!-- Botón de redirección a inicio según vista -->
+       <div class="d-flex"> <a class="btn mt-4 btn-outline-secondary m-2" (click)="redirectToHome()"
+        *ngIf="enIntereses">
+        <h6 class="align-items-center m-2" style="font-family:'Lora', serif">Regresar a inicio <i class="fas fa-home m-1"></i></h6>
+      </a></div>
+    </div>
+    
+    
+    <div class="card mt-4 mb-4" style="width: 100%;">
+      <div class="card-body">
+        <h5 class="card-title m-3 text-center">Intereses</h5>
+        <ul >  
+          <li *ngFor="let interest of intereses"> {{interest.descripcionInteres}} </li>
+        </ul>
+        <div class="d-flex flex-row-reverse">
+          <a class="btn btn-outline-secondary m-2" (click)="redirectToTable()" *ngIf="isLogged()"><i
+              class="fas fa-edit"></i></a>
+          <a class="btn btn-outline-secondary m-2" (click)="redirectToTable()" *ngIf="isLogged()"><i
+              class="fas fa-trash-alt"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="interestModal" tabindex="-1" role="dialog" aria-labelledby="interestModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content modal-dialog-scrollable">
+      <form (ngSubmit)="createInterest()" novalidate [formGroup]="interestForm">
+        <div class="form-container">
+          <h4>Intereses</h4>
+          <h5><strong>Ingrese los datos</strong></h5>
+
+          <!-- input descripcionInteres-->
+          <div class="grupo">
+            <textarea formControlName="descripcionInteres" id="descripcionInteres" required></textarea> <span
+              class="barra"></span>
+            <label>Descripción</label>
+            <span *ngIf="invalidError('descripcionInteres', 'required')" class="text-danger">La descripcion es
+              requerida</span>
+            <span *ngIf="invalidError('descripcionInteres', 'maxlength')" class="text-danger">La descripcion debe ser
+              menor a 175 caracteres.</span>
+          </div>
+        </div>
+      </form>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="close()">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="createInterest()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

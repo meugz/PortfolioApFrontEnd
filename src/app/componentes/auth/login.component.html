@@ -1,0 +1,26 @@
+<div class="section-login" id="login">
+    <div class="imagen-login">
+
+        <form #f="ngForm" class="form" (ngSubmit)="onLogin()" novalidate>
+            <div class="form-container">
+                <h4>Inicia Sesión</h4>
+                <div class="group">
+                    <input type="text" name="nombreUsuario" id="nombreUsuario" [(ngModel)]="nombreUsuario" required>
+                    <span class="barra"></span>
+                    <label for="nombreUsuario">Nombre de Usuario</label>
+                </div>
+                <div class="group">
+                    <input type="password" name="password" id="password" [(ngModel)]="password" required><span
+                        class="barra"></span>
+                    <label for="password">Password</label>
+                </div>
+                <div class="group">
+                    <button class="btn btn-outline-light" [disabled]="!f.valid">
+                        <i class="fas fa-sign-in-alt"></i> Ingresar</button>
+                </div>
+                <div *ngIf="f.submitted && isLoginFail" class="text-danger text-center">{{ error }}</div>
+            </div>
+        </form>
+
+    </div>
+</div>

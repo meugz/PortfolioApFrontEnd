@@ -1,0 +1,100 @@
+<div class="section" id="projects">
+  <div class="container py-2">
+    <div class="d-flex justify-content-between">
+      <!-- Título de encabezado y botones de ver y agregar filtrados según vista -->
+      <div class="d-flex">
+        <div>
+          <div class="h4 text-left mt-4 title">Proyectos
+            <a class="btn btn-outline-secondary m-2" (click)="redirectTo()" *ngIf="!enProyectos && isLogged()"><i
+                class="fas fa-eye"></i></a>
+            <a class="btn btn-outline-secondary m-2" (click)="openCreate()" *ngIf="enProyectos && isLogged()"><i
+                class="fas fa-plus"></i></a>
+          </div>
+        </div>
+      </div>
+      <!-- Botón de redirección a inicio según vista -->
+      <div class="d-flex"> <a class="btn mt-4 btn-outline-secondary m-2" (click)="redirectToHome()" *ngIf="enProyectos">
+          <h6 class="align-items-center m-2" style="font-family:'Lora', serif">Regresar a inicio <i
+              class="fas fa-home m-1"></i></h6>
+        </a></div>
+    </div>
+
+    <!-- Cards para mostrar listados de experiencias laborales -->
+    <div class="card mt-4 mb-4" id="proyecto" *ngFor="let proyecto of proyectos" style="max-width: 100%;">
+      <div class="row g-0">
+        <div class="container d-flex exp-img col-md-2 align-items-center justify-content-center img-fluid ml-2">
+          <img src="../../../assets/img/icono-proyectos-ft.png" width=110px height=80px alt="...">
+        </div>
+        <!-- <div class="col-md-2 d-flex align-items-center justify-content-center">
+          <i class="fas fa-project-diagram lg"></i>
+        </div> -->
+        <div class="col-md-10">
+          <h4 class="card-title m-3" id="nombre-proyecto"> {{proyecto.nombreProyecto}}</h4>
+          <h5 class="card-subtitle m-3" id="fecha-entrega"> Fecha de presentación: {{proyecto.fecha}}</h5>
+          <p class="card-text m-3" id="descripcion-proyecto"> {{proyecto.descripcionProyecto}} </p>
+          <a href="{{proyecto.url}}">
+            <p class="card-text m-3"><small class="text-muted">Ver proyecto</small></p>
+          </a>
+          <div class="d-flex flex-row-reverse">
+            <a class="btn btn-outline-secondary m-2" (click)="openEdit(proyecto.id)" *ngIf="isLogged()"><i
+                class="fas fa-edit"></i></a>
+            <a class="btn btn-outline-secondary m-2" (click)="deleteProject(proyecto.id)" *ngIf="isLogged()"><i
+                class="fas fa-trash-alt"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para agregar y editar proyectos -->
+<div class="modal fade" id="proModal" tabindex="-1" role="dialog" aria-labelledby="proModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content modal-dialog-scrollable">
+      <form (ngSubmit)="createProject()" novalidate [formGroup]="projectform">
+        <div class="form-container">
+          <h4>Proyecto</h4>
+          <h5><strong>Ingrese los datos</strong></h5>
+
+          <!-- input nombreProyecto-->
+          <div class="grupo">
+            <input type="text" formControlName="nombreProyecto" id="nombreProyecto" required> <span
+              class="barra"></span>
+            <label>Nombre del Proyecto</label>
+            <span *ngIf="invalid('nombreProyecto')" class="text-danger">El nombre es requerido.</span>
+          </div>
+          <!--input fecha -->
+          <div class="grupo">
+            <input type="text" formControlName="fecha" id="fecha" required #dateInputProject> <span
+              class="barra"></span>
+            <label>Fecha presentación</label>
+            <span *ngIf="invalid('fecha')" class="text-danger">La fecha es requerida.</span>
+          </div>
+          <!-- input descripcionProyecto-->
+          <div class="grupo">
+            <textarea formControlName="descripcionProyecto" id="descripcionProyecto" required></textarea> <span
+              class="barra"></span>
+            <label>Descripción</label>
+            <span *ngIf="invalidError('descripcionProyecto', 'required')" class="text-danger">La descripcion es
+              requerida</span>
+            <span *ngIf="invalidError('descripcionProyecto', 'maxlength')" class="text-danger">La descripcion debe ser
+              menor a 175 caracteres.</span>
+          </div>
+          <!-- input URL-->
+          <div class="grupo">
+            <textarea formControlName="url" id="url" required></textarea> <span class="barra"></span>
+            <label>URL del proyecto</label>
+            <span *ngIf="invalidError('url', 'required')" class="text-danger">La url es requerida</span>
+            <span *ngIf="invalidError('url', 'maxlength')" class="text-danger">La url debe ser menor a 175
+              caracteres.</span>
+          </div>
+        </div>
+      </form>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="close()">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="createProject()" *ngIf="!buttonEdit">Guardar</button>
+        <button type="button" class="btn btn-primary" (click)="editProject()" *ngIf="buttonEdit">Editar</button>
+      </div>
+    </div>
+  </div>
+</div>
