@@ -14,7 +14,7 @@ export const environment = {
   },
   production: false,
   //basePath: 'https://mez-app-ap.onrender.com/api/',
-  basePath: 'http://localhost:8080/api/',
+  basePath: 'http://localhost:10000/api/',
   imgBasePath: "../../../assets/img/",
   fireImgPath: "https://firebasestorage.googleapis.com/v0/b/portfolioap-bf382.appspot.com/o/",
   mediaToken: "?alt=media&token=191386ee-97fa-4b04-87a4-66c10b48afef"
