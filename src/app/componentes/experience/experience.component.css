@@ -2,10 +2,6 @@
     background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%); 
 }
 
-.exp-img{
-    align-self: center;
-}
-
 h4, h5 {
     text-align: center;
     margin: 10px 0;
@@ -101,6 +97,10 @@ input:focus~.barra::before, textarea:focus~.barra::before{
 
 .btnhome{
    justify-content: right;
+}
+
+.fa-briefcase{
+    font-weight: 800px;
 }
 
 

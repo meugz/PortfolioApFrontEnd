@@ -1,22 +1,27 @@
 <div class="section" id="cursos">
-  <div class="container">
-    <!-- Botón de regreso a inicio filtrado según vista -->
-    <div class="d-flex justify-content-end"> <a class="btn mt-4 btn-outline-secondary m-1" (click)="redirectToHome()"
-        *ngIf="enCursos">
-        <h6 class="align-self-center">Regresar a inicio<i class="fas fa-home m-1"></i></h6>
-      </a>
-    </div>
-    <!-- Título del componente y botones: ver y agregar filtrados según vista -->
-    <div class="d-flex flex-row justify-content-between">
-      <div class="col-lg-10 col-md-12">
-        <div class="h4 text-left mt-4 title">Cursos
-          <a class="btn btn-outline-secondary m-2" (click)="redirectTo()" *ngIf="!enCursos && isLogged()"><i
-              class="fas fa-eye"></i></a>
-          <a class="btn btn-outline-secondary m-2" (click)="openCreate()" *ngIf="enCursos && isLogged()"><i
-              class="fas fa-plus"></i></a>
+  <div class="container py-2">
+    <div class="d-flex justify-content-between">
+      <!-- Título del componente y botones: ver y agregar filtrados según vista -->
+      <div class="d-flex">
+        <div>
+          <div class="h4 text-left mt-4 title">Cursos
+            <a class="btn btn-outline-secondary m-2" (click)="redirectTo()" *ngIf="!enCursos && isLogged()"><i
+                class="fas fa-eye"></i></a>
+            <a class="btn btn-outline-secondary m-2" (click)="openCreate()" *ngIf="enCursos && isLogged()"><i
+                class="fas fa-plus"></i></a>
+          </div>
         </div>
       </div>
+
+      <!-- Botón de regreso a inicio filtrado según vista -->
+      <div class="d-flex"> <a class="btn mt-4 btn-outline-secondary m-2" (click)="redirectToHome()" *ngIf="enCursos">
+          <h6 class="align-items-center m-2" style="font-family:'Lora', serif">Regresar a inicio<i
+              class="fas fa-home m-1"></i></h6>
+        </a>
+      </div>
     </div>
+
+
 
     <!-- Cards con listado de cursos traidos desde BD -->
     <div class="card mb-4 mt-4" *ngFor="let curso of cursos" style="max-width: 100%;">
@@ -36,7 +41,8 @@
           </ul>
           <!-- Botones para editar y borrar curso -->
           <div class="d-flex flex-row-reverse">
-            <a class="btn btn-outline-secondary m-2" (click)="openEdit(curso.id)" *ngIf="isLogged()"><i class="fas fa-edit"></i></a>
+            <a class="btn btn-outline-secondary m-2" (click)="openEdit(curso.id)" *ngIf="isLogged()"><i
+                class="fas fa-edit"></i></a>
             <a class="btn btn-outline-secondary m-2" (click)="deleteCourse(curso.id)" *ngIf="isLogged()"><i
                 class="fas fa-trash-alt"></i></a>
           </div>
@@ -88,7 +94,7 @@
           </div>
         </div>
       </form>
-      
+
       <!-- Fin de formulario - botones para crear y editar filtrados según vista -->
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" (click)="close()">Cerrar</button>

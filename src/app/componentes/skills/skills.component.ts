@@ -16,7 +16,6 @@ import { TokenService } from 'src/app/servicios/token.service';
   styleUrls: ['./skills.component.css']
 })
 export class SkillsComponent implements OnInit {
-  //skill: Skill = new Skill('', '', null, '', '');
   skills: Skill[] = [];
   addform: FormGroup;
   skillTypes: any[] = [];
@@ -33,7 +32,6 @@ export class SkillsComponent implements OnInit {
     this.cargarSelectTipo();
     this.cargarSelectNivel();
     this.cargarSelectNivelHyS();
-    //this.filtrarSelect(); 
     this.skillService.getListaSkill().subscribe(skill => this.skills = skill);
     this.enSkills = this.router.url.includes('skills');
   }
@@ -59,15 +57,6 @@ export class SkillsComponent implements OnInit {
       this.syhLevels.push({ text: nivelHyS, value: SyhLevel[nivelHyS] });
     }
   }
-
-  // filtrarSelect() {
-  //   if (this.tipoSkill == 'IDIOMAS') {
-  //     this.cargarSelectNivel();
-  //   } else {
-  //     console.log(false);
-  //     this.cargarSelectNivelHyS();
-  //   }
-  // }
 
   buildForm() {
     this.addform = this.formBuilder.group({
@@ -138,7 +127,5 @@ export class SkillsComponent implements OnInit {
   isLogged(){
     return this.usuarioService.isLogged();
   }
-  
-
 
 }

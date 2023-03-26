@@ -27,7 +27,6 @@ export class EncabezadoComponent implements OnInit {
   //Redirección de rutas a componentes desde el navbar
   redirectToHome() {
     this.router.navigate(['']);
- 
   }
 
   redirectToPerfil() {
@@ -73,5 +72,4 @@ export class EncabezadoComponent implements OnInit {
   onLogOut(): void {
     this.tokenService.logOut();
   }
-
 }

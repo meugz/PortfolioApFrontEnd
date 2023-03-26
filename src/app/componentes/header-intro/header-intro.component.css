@@ -38,78 +38,81 @@
 
 .img-profile {
     width: auto;
-    height: auto; 
+    height: auto;
 
-} 
+}
 
-.perfil{ 
+.perfil {
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
 }
 
 
-.perfil-texto{
+.perfil-texto {
     color: azure;
     text-align: center;
 }
 
-@media screen and (max-width:1100px){
+@media screen and (max-width:1100px) {
     .page-header {
         height: 80vh;
     }
 }
 
-@media screen and (max-width:600px){
+@media screen and (max-width:600px) {
     .page-header {
         height: 60vh;
-    }  
+    }
 }
 
 
-@media screen and (max-width:450px){
+@media screen and (max-width:450px) {
     .page-header {
         height: 50vh;
     }
 }
-@media screen and (max-width:300px){
+
+@media screen and (max-width:300px) {
     .page-header {
         height: 50vh;
     }
 }
 
 /*ESTILOS DEL FORMULARIO DE EDICIÓN DE PERFIL*/
-h4, h5 {
+h4,
+h5 {
     text-align: center;
     margin: 10px 0;
     font-weight: 600;
 }
 
-.form-container{
+.form-container {
     width: 70%;
 }
 
-form{
- 
+form {
+
     width: 100%;
     padding: 16px 0;
     display: flex;
     justify-content: center;
 }
 
-.modal-dialog{
+.modal-dialog {
     border-radius: 10px;
     box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
     background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
 }
 
-form .grupo{
+form .grupo {
     position: relative;
     margin: 30px;
 }
 
-input, textarea{
+input,
+textarea {
     background: none;
     color: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
     font-size: 18px;
@@ -121,31 +124,32 @@ input, textarea{
     resize: none;
 }
 
-input:focus, textarea:focus{
+input:focus,
+textarea:focus {
     outline: none;
-    color:rgba(94, 93, 93);
+    color: rgba(94, 93, 93);
 }
 
-.foto-label{
+.foto-label {
     position: absolute;
     top: -14px;
     font-size: 12px;
     color: #00b9d8;
 }
 
-input:focus~label, 
-input:valid~label, 
-textarea:focus~label, 
+input:focus~label,
+input:valid~label,
+textarea:focus~label,
 textarea:valid~label {
-    
+
     position: absolute;
     top: -14px;
     font-size: 12px;
     color: #00b9d8;
 }
 
- 
-label{
+
+label {
     color: var(--colorTextos);
     font-size: 16px;
     position: absolute;
@@ -155,24 +159,24 @@ label{
     pointer-events: none;
 }
 
-.barra{
+.barra {
     position: relative;
     display: block;
     width: 100%;
 }
 
-input:focus~.barra::before, textarea:focus~.barra::before{
+input:focus~.barra::before,
+textarea:focus~.barra::before {
     width: 100%;
 }
 
-.barra::before{
+.barra::before {
     content: '';
     height: 2px;
     width: 0;
     bottom: 0;
     position: absolute;
-    background: linear-gradient(to right, #3F5EFB, #FC466B); 
+    background: linear-gradient(to right, #3F5EFB, #FC466B);
     transition: 0.3s ease all;
     left: 0%;
 }
-

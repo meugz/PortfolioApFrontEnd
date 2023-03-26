@@ -19,6 +19,8 @@ export class InterestComponent implements OnInit {
   buttonEdit: boolean;
   interesId: number;
   enIntereses: boolean = false;
+  estaVacio: boolean = false;
+ 
  
 
   constructor(private interesService: InteresService, private tokenService: TokenService, private usuarioService: UsuarioService, private formBuilder: FormBuilder, private router: Router) { }
@@ -28,7 +30,6 @@ export class InterestComponent implements OnInit {
     this.buildForm();
     this.interesService.getListaInteres().subscribe(interes => this.intereses = interes);
     this.enIntereses = this.router.url.includes('intereses');
-
   }
 
   //armado formulario-validaciones
@@ -103,6 +104,5 @@ export class InterestComponent implements OnInit {
   isLogged(){
     return this.usuarioService.isLogged();
   }
-
 
 }

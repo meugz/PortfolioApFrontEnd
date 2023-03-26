@@ -1,7 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ImageNameDto } from '../model/ImageNameDto.model';
 import { Persona } from '../model/persona.model';
+
 
 
 @Injectable({
@@ -25,19 +27,9 @@ export class PersonaService {
     return this.http.put<Persona>(this.URL + id, persona);
   }
 
-  // //codigo adicional
-  // public getListaPersonas(): Observable<Persona[]>{
-  //   return this.http.get<Persona[]>(this.URL+'all');
-  // }
-
-  // //crear persona
-  // public crearPersona(persona: Persona): Observable<Persona>{
-  //   return this.http.post<Persona>(this.URL+'new', persona);
-  // }
-
-  // //borrar persona 
-  // public borrarPersona(id:number): Observable<Persona>{
-  //   return this.http.delete<Persona>(this.URL+id);
-  // }
+  //editar foto perfil - persona pasando la foto por string
+  public editarFoto(id:number, imgDto: ImageNameDto){
+    return this.http.post(this.URL+'img/perfil/'+id, imgDto);
+  }
 
 }

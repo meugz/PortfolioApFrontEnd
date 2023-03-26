@@ -19,7 +19,7 @@ export class AboutComponent implements OnInit, AfterViewInit {
   personas: Persona[] = [];
   eform: FormGroup;
   personaId: number;
-  
+
 
   constructor(private personaService: PersonaService, private tokenService: TokenService, private usuarioService: UsuarioService, private formBuilder: FormBuilder, private router: Router) { }
 
@@ -120,8 +120,8 @@ export class AboutComponent implements OnInit, AfterViewInit {
   }
 
   //corroborar si inicio sesion
-  isLogged(){
+  isLogged() {
     return this.usuarioService.isLogged();
   }
-  
+
 }

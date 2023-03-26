@@ -30,7 +30,7 @@ form{
     box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
 }
 
-.form {
+form {
     display: flex;
     justify-content: center;
 }

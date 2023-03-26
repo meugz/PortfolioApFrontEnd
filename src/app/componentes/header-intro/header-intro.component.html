@@ -1,32 +1,39 @@
 <div class="wrapper-segundo profile-page-prueba">
-    <div class="page-header">
-        <div class="page-header-image img-fluid">
-            <div class="container">
-                <div class="perfil flex-column">
-                    <div class="profile-image mb-2">
-                        <a>
-                          <span class="d-flex"><img *ngIf="persona" class="img-profile img-fluid mx-auto mb-2"
-                            [src]="persona.foto" alt="..." /> <i class="fa-solid fa-user"></i></span>
-                        </a>
-                    </div>
-                    <div >
-                        <div>
-                            <h2 class="perfil-texto" id="nombre-apellido" *ngIf="persona"> {{persona.nombre + ' ' + persona.apellido}} </h2>
-                        </div>
-                        <h5 class="categoria perfil-texto" id="ocupacion" *ngIf="persona"> {{persona.ocupacion}}</h5>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-center" *ngIf="isLogged()">
-                    <a class="btn btn-outline-light m-3 p-16px" (click)="open(persona.id)"><i class="fas fa-edit"></i></a>
-                </div>
+  <div class="page-header">
+    <div class="page-header-image img-fluid">
+      <div class="container">
+        <div class="perfil flex-column">
+          <div class="profile-image mb-2">
+            <a>
+              <span class="d-flex"><img *ngIf="persona" class="img-profile img-fluid mx-auto mb-2"
+                  [src]="imgPath + persona.foto + mediaToken" alt="..." /> <i class="fas fa-user"></i></span>
+            </a>
+          </div>
+          <div>
+            <div>
+              <h2 class="perfil-texto" id="nombre-apellido" *ngIf="persona"> {{persona.nombre + ' ' + persona.apellido}}
+              </h2>
             </div>
+            <h5 class="categoria perfil-texto" id="ocupacion" *ngIf="persona"> {{persona.ocupacion}}</h5>
+          </div>
         </div>
+        <div class="d-flex justify-content-center">
+          <div class="d-flex justify-content-center" *ngIf="isLogged()">
+            <a class="btn btn-outline-light m-3 p-16px" (click)="open(persona.id)"><i class="fas fa-edit"></i></a>
+          </div>
+          <div class="d-flex justify-content-center" *ngIf="isLogged()">
+            <a class="btn btn-outline-light m-3 p-16px" (click)="openModalPhoto()"><i
+                class="fas fa-file-image ms-1 me-1"></i></a>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 
 <div class="modal fade" id="perfilModal" tabindex="-1" role="dialog" aria-labelledby="perfilModalLabel"
   aria-hidden="true">
-  <div class="modal-dialog modal-lg"  role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content modal-dialog-scrollable">
       <form (ngSubmit)="editarPerfil()" novalidate [formGroup]="eForm">
         <div class="form-container">
@@ -35,45 +42,55 @@
 
           <!-- input nombre -->
           <div class="grupo">
-            <input type="text" formControlName="nombre" id="nombre"  required >  <span
-              class="barra"></span>
+            <input type="text" formControlName="nombre" id="nombre" required> <span class="barra"></span>
             <label>Nombre</label>
             <span *ngIf="invalid('nombre')" class="text-danger">El nombre es requerido.</span>
           </div>
           <!-- input apellido -->
           <div class="grupo">
-            <input type="text" formControlName="apellido" id="apellido"  required >  <span
-              class="barra"></span>
+            <input type="text" formControlName="apellido" id="apellido" required> <span class="barra"></span>
             <label>Apellido</label>
             <span *ngIf="invalid('apellido')" class="text-danger">El apellido es requerido.</span>
           </div>
-        
-           <!-- input ocupacion -->
-           <div class="grupo">
-            <input type="text" formControlName="ocupacion" id="ocupacion"  required >  <span
-              class="barra"></span>
+
+          <!-- input ocupacion -->
+          <div class="grupo">
+            <input type="text" formControlName="ocupacion" id="ocupacion" required> <span class="barra"></span>
             <label>Ocupación</label>
             <span *ngIf="invalid('ocupacion')" class="text-danger">La ocupación es requerida.</span>
-          </div>
-          <!-- input url foto -->
-          <!-- <div class="grupo">
-            <input type="file" formControlName="foto" id="foto" [(ngModel)]="persona.foto" required>  <span
-              class="barra"></span>
-            <label class="foto-label">Foto</label>
-          <span *ngIf="invalid('foto')" class="text-danger">La foto de perfil es requerida.</span> -->
-          <!--</div> -->
-          <div class="grupo">
-            <input type="text" formControlName="foto" id="foto"  required >  <span
-              class="barra"></span>
-            <label>Foto</label>
-            <span *ngIf="invalid('foto')" class="text-danger">La foto de perfil es requerida.</span>
           </div>
         </div>
       </form>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" (click)="close()">Cerrar</button>
-        <button type="button" class="btn btn-primary" (click)="editarPerfil()" >Guardar</button>
+        <button type="button" class="btn btn-primary" (click)="editarPerfil()">Guardar</button>
       </div>
     </div>
   </div>
-</div> 
+</div>
+
+<div class="modal fade" id="perfilPhotoModal" tabindex="-1" role="dialog" aria-labelledby="perfilPhotoModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content modal-dialog-scrollable">
+      <form class="form"  [formGroup]="eForm" novalidate>
+
+        <div class="form-container">
+          <h4>Editar Foto</h4>
+          <h5><strong>Selecciona el archivo de foto</strong></h5>
+          <!-- input foto -->
+          <div class="grupo">
+            <input type="file" name="foto" id="foto" required
+              (change)="uploadImage($event)" accept=".jpg, .jpeg, .png"> <span class="barra"></span>
+            <label class="foto-label">Foto</label>
+            <span *ngIf="invalid('foto')" class="text-danger">La foto de perfil es requerida.</span>
+          </div>
+        </div>
+      </form>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModalPhoto()">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="closeModalPhoto()">Editar foto</button>
+      </div>
+    </div>
+  </div>
+</div>

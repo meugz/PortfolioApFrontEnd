@@ -1,13 +1,19 @@
 <div class="section" id="interes-edit">
   <div class="container">
-    <!-- Botón para redigir vista a componente de intereses filtrado según vista -->
-    <div class="d-flex justify-content-end"> <a class="btn mt-4 btn-outline-secondary mb-1" (click)="redirectTo()"
-        *ngIf="enInteresesTabla">
-        <h6 class="align-self-center">Regresar a intereses<i class="fas fa-heart m-1"></i></h6>
-      </a>
+    <div class="d-flex justify-content-between mt-4">
+      <!-- Título componente y listado de datos traidos desde BD -->
+      <div class="h4 align-self-center mt-4 mb-4 title">Lista de Intereses</div>
+
+      <!-- Botón para redigir vista a componente de intereses filtrado según vista -->
+      <div class="d-flex"> <a class="btn mt-4 btn-outline-secondary m-2" (click)="redirectTo()"
+          *ngIf="enInteresesTabla">
+          <h6 class="align-items-center m-2" style="font-family:'Lora', serif">Regresar a intereses <i
+              class="fas fa-heart m-1"></i></h6>
+        </a>
+      </div>
     </div>
-    <!-- Título componente y listado de datos traidos desde BD -->
-    <div class="h4 text-right mt-4 mb-4 title">Lista de Intereses</div>
+
+
     <div class="card mt-2 mb-2 content" *ngFor="let interest of intereses" style="width: 100%;">
       <ol>
         <div class="card-body">

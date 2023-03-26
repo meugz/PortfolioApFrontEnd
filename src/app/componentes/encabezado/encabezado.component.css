@@ -1,56 +1,56 @@
 .navbar {
-    padding: 5px;
-    margin-top: 0;
+  padding: 5px;
+  margin-top: 0;
+  background-position: 0 0;
+  background-image: linear-gradient(to right, #673ab7, #9c27b0, #3f51b5, #cddc39, #cddc39);
+  background-size: 300%;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-name: menugradientanimation;
+}
+
+.boton-logo,
+.nav-item {
+  cursor: pointer;
+}
+
+.nav-link {
+  color: #fff !important;
+}
+
+.nav-link:hover {
+  color: #ccc !important;
+  text-decoration: none;
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center !important;
+}
+
+
+@keyframes menugradientanimation {
+  0% {
     background-position: 0 0;
-    background-image: linear-gradient(to right, #673ab7, #9c27b0, #3f51b5, #cddc39, #cddc39);
-    background-size: 300%;
-    animation-duration: 10s;
-    animation-iteration-count: infinite;
-    animation-name: menugradientanimation;
   }
 
-  .boton-logo, .nav-item {
-    cursor: pointer;
-  }
-  
-  .nav-link {
-    color: #fff !important;
-  }
-  .nav-link:hover {
-    color: #ccc !important;
-    text-decoration: none;
-  }
-  
-  @keyframes menugradientanimation {
-    0% {
-      background-position: 0 0;
-    }
-    25% {
-      background-position: 50% 0;
-    }
-    50% {
-      background-position: 90% 0;
-    }
-    60% {
-      background-position: 60%;
-    }
-    80% {
-      background-position: 40%;
-    }
-    100% {
-      background-position: 0 0;
-    }
+  25% {
+    background-position: 50% 0;
   }
 
-  /*
-  .collapse {
-    justify-content: flex-evenly !important;
+  50% {
+    background-position: 90% 0;
   }
-  */
 
-    /* Gradient colors*/
-  /*.wrapper {
-    padding: 10px !important;
-    background: #000 !important;
-    height: 100vh;
-  }*/
+  60% {
+    background-position: 60%;
+  }
+
+  80% {
+    background-position: 40%;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}

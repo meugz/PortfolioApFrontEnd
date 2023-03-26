@@ -1,29 +1,35 @@
 <div class="section" id="experience">
   <div class="container py-2">
-    <!-- Botón de redirección a inicio según vista -->
-    <div class="d-flex justify-content-end"><a class="btn btn-outline-secondary m-1" (click)="redirectToHome()"
-        *ngIf="enExperiencias">
-        <h6 class="align-self-center">Regresar a inicio <i class="fas fa-home m-1"></i></h6>
-      </a>
-    </div>
-    <!-- Título de encabezado y botones de ver y agregar filtrados según vista -->
-    <div class="d-flex flex-row justify-content-start">
-      <div class="col-lg-10 col-md-12 m-0">
-        <div class="h4 text-left mt-4 title">Experiencia Laboral
-          <a class="btn btn-outline-secondary m-2" (click)="redirectTo()" *ngIf="!enExperiencias && isLogged()"><i
-              class="fas fa-eye"></i></a>
-          <a class="btn btn-outline-secondary m-2" (click)="openCreate()" *ngIf="enExperiencias && isLogged()"><i
-              class="fas fa-plus"></i></a>
+    <div class="d-flex justify-content-between">
+      <!-- Título de encabezado y botones de ver y agregar filtrados según vista -->
+      <div class="d-flex">
+        <div>
+          <div class="h4 text-left mt-4 title">Experiencia Laboral
+            <a class="btn btn-outline-secondary m-2" (click)="redirectTo()" *ngIf="!enExperiencias && isLogged()"><i
+                class="fas fa-eye"></i></a>
+            <a class="btn btn-outline-secondary m-2" (click)="openCreate()" *ngIf="enExperiencias && isLogged()"><i
+                class="fas fa-plus"></i></a>
+          </div>
         </div>
       </div>
+      <!-- Botón de redirección a inicio según vista -->
+      <div class="d-flex"><a class="btn mt-4 btn-outline-secondary m-2" (click)="redirectToHome()"
+          *ngIf="enExperiencias">
+          <h6 class="align-items-center m-2" style="font-family:'Lora', serif"> Regresar a inicio <i
+              class="fas fa-home m-1"></i></h6>
+        </a>
+      </div>
     </div>
+
     <!-- Cards para mostrar listados de experiencias laborales -->
     <div class="card mt-4 mb-4" style="max-width: 100%;" *ngFor="let experience of trabajos">
       <div class="row g-0">
-        <div class="exp-img col-md-2">
-          <img src="../../../assets/img/escudo-santaFe.png" class="img-thumbnail img-fluid rounded-start m-2"
-            width=350px height=350px alt="...">
+        <div class="container d-flex exp-img col-md-2 align-items-center justify-content-center img-fluid ml-2">
+          <img src="../../../assets/img/icono-trabajo-ft.png" width=110px height=110px alt="...">
         </div>
+        <!-- <div class="col-md-2 d-flex align-items-center justify-content-center">
+          <i class="fas fa-briefcase"></i>
+        </div> -->
         <!-- Datos tradidos desde BD -->
         <div class="col-md-10">
           <h4 class="card-title m-3"> {{experience.empresa}}</h4>
@@ -32,7 +38,8 @@
           <p class="card-text m-3"> {{experience.descripcionExp}}</p>
           <p class="card-text"><small class="text-muted m-3">{{experience.ubicacion}}</small></p>
           <div class="d-flex flex-row-reverse">
-            <a class="btn btn-outline-secondary m-2" (click)="openEdit(experience.id)"  *ngIf="isLogged()"><i class="fas fa-edit"></i></a>
+            <a class="btn btn-outline-secondary m-2" (click)="openEdit(experience.id)" *ngIf="isLogged()"><i
+                class="fas fa-edit"></i></a>
             <a class="btn btn-outline-secondary m-2" (click)="deleteExp(experience.id)" *ngIf="isLogged()"><i
                 class="fas fa-trash-alt"></i></a>
           </div>
@@ -41,6 +48,8 @@
     </div>
   </div>
 </div>
+
+
 
 <!-- Modal con formulario para creación y edición de experiencia laboral -->
 <div class="modal fade" id="expModal" tabindex="-1" role="dialog" aria-labelledby="expModalLabel" aria-hidden="true">

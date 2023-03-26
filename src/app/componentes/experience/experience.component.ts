@@ -8,11 +8,13 @@ import { Router } from '@angular/router';
 import Inputmask from 'inputmask';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { TokenService } from 'src/app/servicios/token.service';
+import { ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-experience',
   templateUrl: './experience.component.html',
-  styleUrls: ['./experience.component.css']
+  styleUrls: ['./experience.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class ExperienceComponent implements OnInit, AfterViewInit {
@@ -24,10 +26,10 @@ export class ExperienceComponent implements OnInit, AfterViewInit {
   experiencia: Experiencia;
   buttonEdit: boolean = false;
   enExperiencias: boolean = false;
-  
 
 
-  constructor(public experienciaService: ExperienciaService, private tokenService:TokenService, private usuarioService: UsuarioService, private formBuilder: FormBuilder, private router: Router) { }
+
+  constructor(public experienciaService: ExperienciaService, private tokenService: TokenService, private usuarioService: UsuarioService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
     this.isLogged();
@@ -181,10 +183,8 @@ export class ExperienceComponent implements OnInit, AfterViewInit {
     }).mask(this.myInputElementRef.nativeElement);
   }
 
-  isLogged(){
+  isLogged() {
     return this.usuarioService.isLogged();
   }
-
-
 }
 

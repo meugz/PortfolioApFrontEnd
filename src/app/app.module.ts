@@ -25,6 +25,9 @@ import { PerfilComponent } from './componentes/perfil/perfil.component';
 import { LoginComponent } from './componentes/auth/login.component';
 import { interceptorProvider } from './servicios/interceptor.service';
 import { CommonModule, Location } from '@angular/common';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideStorage,getStorage } from '@angular/fire/storage';
 
 
 
@@ -58,7 +61,9 @@ import { CommonModule, Location } from '@angular/common';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    CommonModule 
+    CommonModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)), //sin usar usar en version final
+    provideStorage(() => getStorage()) //sin usar en version final
   ],
   providers: [interceptorProvider],
   bootstrap: [AppComponent]

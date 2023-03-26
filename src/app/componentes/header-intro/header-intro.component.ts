@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Persona } from 'src/app/model/persona.model';
 import { PersonaService } from 'src/app/servicios/persona.service';
 import { environment } from 'src/environments/environment';
@@ -8,6 +8,10 @@ import * as bs from 'bootstrap/dist/js/bootstrap.bundle.js';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { TokenService } from 'src/app/servicios/token.service';
 import { ImgPerfilService } from 'src/app/servicios/img-perfil.service';
+import { ImageNameDto } from 'src/app/model/ImageNameDto.model';
+import { HttpRequest } from '@angular/common/http';
+
+
 
 @Component({
   selector: 'app-header-intro',
@@ -15,27 +19,27 @@ import { ImgPerfilService } from 'src/app/servicios/img-perfil.service';
   styleUrls: ['./header-intro.component.css']
 })
 export class HeaderIntroComponent implements OnInit {
-  persona: Persona | undefined;
+
   personas: Persona[] = [];
   eForm: FormGroup;
   personaId: number;
-  public previsualizacion: string;
+  imgPath: string = environment.fireImgPath;
+  mediaToken: string = environment.mediaToken;
+  persona: Persona | undefined;
 
-  
-  constructor(private imgService: ImgPerfilService, private personaService: PersonaService, private tokenService:TokenService, private usuarioService: UsuarioService, private formBuilder: FormBuilder, private router: Router) { }
+
+
+  constructor(private imgPerfilService: ImgPerfilService, private activatedRouter: ActivatedRoute, private personaService: PersonaService, private tokenService: TokenService, private usuarioService: UsuarioService, private formBuilder: FormBuilder, private router: Router) { }
+
 
   ngOnInit(): void {
     this.buildForm();
-    this.isLogged(); 
+    this.isLogged();
     this.personaService.getPersona().subscribe(data => {
-    this.persona = data;
-    this.persona.foto = environment.imgBasePath+this.persona.foto;
-      
+      this.persona = data;
     })
-    
   }
-
-
+  //construccion formulario
   buildForm() {
     this.eForm = this.formBuilder.group({
       nombre: ['', Validators.required],
@@ -45,16 +49,16 @@ export class HeaderIntroComponent implements OnInit {
 
     })
   }
-
+  //validaciones formulario 
   invalid(parametro: string) {
     return this.eForm.get(parametro).invalid && this.eForm.get(parametro).touched;
   }
 
   invalidError(parametro: string, param: string) {
     return this.eForm.get(parametro).getError(param) && this.eForm.get(parametro).touched;
-
   }
 
+  //editar perfil - campos texto recargados en formulario
   editarPerfil() {
     this.eForm.markAllAsTouched();
     if (this.eForm.valid) {
@@ -73,6 +77,7 @@ export class HeaderIntroComponent implements OnInit {
     }
   }
 
+  //apertura y cierre modal para editar perfil texto 
   open(id: number) {
     this.personaId = id;
     console.log(this.personaId);
@@ -96,7 +101,7 @@ export class HeaderIntroComponent implements OnInit {
         //me devuelve una lista con los nombres de los atributos del objeto
         let attributeList = Object.keys(persona);
         for (let attr of attributeList) {
-          if (attr == 'nombre' || attr == 'apellido' || attr == 'ocupacion' || attr == 'foto') {
+          if (attr == 'nombre' || attr == 'apellido' || attr == 'ocupacion') {
             this.eForm.get(attr).setValue(persona[attr]);
           }
         }
@@ -109,15 +114,36 @@ export class HeaderIntroComponent implements OnInit {
   }
 
   //control login
-  isLogged(){
+  isLogged() {
     return this.usuarioService.isLogged();
   }
 
+  //seccion subir foto de perfil///////////////////
 
+  //abrir modal para cambiar foto
+  openModalPhoto() {
+    var myModalEl = document.querySelector('#perfilPhotoModal');
+    var myModal = bs.Modal.getOrCreateInstance(myModalEl);
+    myModal.show(); // show modal
+  }
 
-  
+  closeModalPhoto() {
+    this.eForm.reset();
+    var myModalEl = document.getElementById('perfilPhotoModal');
+    const myModal = bs.Modal.getInstance(myModalEl);
+    myModal.hide(); // hide modal
+  }
 
- 
-
-
+  //metodo para guardar foto en storage de firebase y  bd back-end 
+  uploadImage(event: any) {
+    const file = event.target.files[0];
+    const formdata = new FormData();
+    formdata.append('image', file);
+    this.imgPerfilService.savePhoto(formdata).subscribe((resp: ImageNameDto) => {
+      console.log(resp);
+      this.personaService.editarFoto(1, resp).subscribe((persona: Persona) => this.persona = persona);
+    }
+    );
+  }
 }
+

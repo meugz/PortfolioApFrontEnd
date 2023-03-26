@@ -20,9 +20,9 @@ export class EducationComponent implements OnInit {
   eduId: number;
   buttonEdit: boolean = false;
   enEducacion: boolean = false;
-  
 
-  constructor(private educacionService: EducacionService, private tokenService:TokenService, private usuarioService: UsuarioService, private formBuilder: FormBuilder, private router: Router) { }
+
+  constructor(private educacionService: EducacionService, private tokenService: TokenService, private usuarioService: UsuarioService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
     this.isLogged();
@@ -160,9 +160,9 @@ export class EducationComponent implements OnInit {
       }
     });
   }
-  
-  isLogged(){
-     return this.usuarioService.isLogged();
-   }
+
+  isLogged() {
+    return this.usuarioService.isLogged();
+  }
 
 }

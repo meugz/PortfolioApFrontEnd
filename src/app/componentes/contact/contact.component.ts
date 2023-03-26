@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,6 +8,9 @@ import { Router } from '@angular/router';
 })
 export class ContactComponent implements OnInit {
   enContacto: boolean = false;
+  @ViewChild('name', {static: false}) name: ElementRef;
+  @ViewChild('email', {static: false}) email: ElementRef;
+  @ViewChild('message', {static: false}) message: ElementRef;
 
   constructor( private router: Router) { }
 
@@ -15,7 +18,11 @@ export class ContactComponent implements OnInit {
     this.enContacto = this.router.url.includes('contacto');
   }
 
-  // redirectToHome(){
-  //   this.router.navigate(['']);
-  // }
+  enviar(){
+    this.name.nativeElement.value = "";
+    this.email.nativeElement.value = "";
+    this.message.nativeElement.value = "";
+  }
+
+  
 }
