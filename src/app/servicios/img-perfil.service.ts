@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Storage } from '@angular/fire/storage';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -8,7 +9,7 @@ import { Storage } from '@angular/fire/storage';
 })
 export class ImgPerfilService {
   url: string = "";
-  URL = 'http://localhost:8080/api/images/';
+  URL = environment.basePath+'images/';
 
 constructor(private http: HttpClient, private storage: Storage) { }
 

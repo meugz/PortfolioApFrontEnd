@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Experiencia } from '../model/experiencia.model';
 import { Persona } from '../model/persona.model';
 
@@ -8,7 +9,7 @@ import { Persona } from '../model/persona.model';
   providedIn: 'root'
 })
 export class ExperienciaService {
-  URL = 'http://localhost:8080/api/experiencia/';
+  URL = environment.basePath+'experiencia/';
 
   constructor(private http: HttpClient) { }
 

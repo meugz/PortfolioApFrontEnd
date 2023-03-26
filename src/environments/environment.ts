@@ -13,6 +13,7 @@ export const environment = {
     messagingSenderId: '179266343133',
   },
   production: false,
+  //basePath: 'https://mez-app-ap.onrender.com/api/',
   basePath: 'http://localhost:8080/api/',
   imgBasePath: "../../../assets/img/",
   fireImgPath: "https://firebasestorage.googleapis.com/v0/b/portfolioap-bf382.appspot.com/o/",
